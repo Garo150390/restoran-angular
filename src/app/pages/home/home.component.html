@@ -2,8 +2,8 @@
 <div class="justify-content-center">
   <p class="text-center display-3">{{ 'home.title' | translate }}</p>
 </div>
-<div class="row col-lg-9 m-auto">
-  <div class="col-lg-3" *ngFor="let restaurant of resataurantsList">
+<div class="row col-lg-9 mx-auto mb-5">
+  <div class="col-10 col-md-6 col-lg-4 p-0" *ngFor="let restaurant of resataurantsList">
     <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
   </div>
 </div>

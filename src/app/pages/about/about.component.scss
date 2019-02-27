@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/transition";
+@import "~src/assets/scss/core/variables";
+
+
+.single-service {
+  .thumb {
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+      @include transition();
+      width: 100%;
+      height: 15rem;
+    }
+  }
+
+  h4 {
+    margin: 20px 0;
+  }
+
+  &:hover {
+    h4 {
+      color: $primary-color;
+    }
+
+    .thumb {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+}

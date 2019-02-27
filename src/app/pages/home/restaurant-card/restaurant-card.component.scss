@@ -1,1 +1,64 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~src/assets/scss/core/variables";
 
+
+.single-service {
+  .thumb {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    height: 20vw;
+
+    img {
+      width: 100%;
+      height: 100%;
+      transition: 1.5s;
+    }
+
+    div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      //background-color: rgba(69, 2, 0, 0.76);
+      color: #fff;
+      opacity: 0;
+      transition: 0.5s;
+      a {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &:hover {
+    .thumb {
+      img {
+        filter: brightness(28%);
+      }
+      div {
+        opacity: 1;
+        transition: 1s;
+      }
+
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .single-service {
+    .thumb {
+      height: 30vw;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .single-service {
+    .thumb {
+      height: 100%;
+    }
+  }
+}

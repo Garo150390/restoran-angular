@@ -23,39 +23,6 @@ a, .pointer {
   padding: 120px 0;
 }
 
-.single-service {
-  .thumb {
-    overflow: hidden;
-    cursor: pointer;
-
-    img {
-      @include transition();
-      width: 100%;
-      height: 15rem;
-    }
-  }
-
-  h4 {
-    margin: 20px 0;
-  }
-
-  &:hover {
-    h4 {
-      color: $primary-color;
-    }
-
-    .thumb {
-      img {
-        transform: scale(1.1);
-      }
-    }
-  }
-
-  @media(max-width: 991px) {
-    margin-bottom: 30px;
-  }
-}
-
 small {
   color: red
 }
