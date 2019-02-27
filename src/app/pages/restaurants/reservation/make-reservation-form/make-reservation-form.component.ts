@@ -1,8 +1,12 @@
+import * as moment from 'moment';
+import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NgbDatepickerConfig, NgbTimepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbDatepickerConfig, NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { ReservationService} from '../../../../core/services/reservation.service';
+import { ReservationModalComponent } from '../reservation-modal/reservation-modal.component';
+import { ReservationService } from '../../../../core/services/reservation.service';
 import { ValidateService } from '../../../../core/services/validate.service';
 
 declare const $: any;
@@ -16,21 +20,31 @@ declare const $: any;
 export class MakeReservationFormComponent implements OnInit {
 
   public reserveForm: FormGroup;
-  public timer1 = {hour: 13, minute: 30};
-  public timer2 = {hour: 15, minute: 0};
+  public startTime = {hour: 13, minute: 30};
+  public endTime = {hour: 15, minute: 0};
   public date: FormControl;
-  public count: FormControl;
-  public success = false;
-  public request = false;
-  public tables: any;
+  public guestsCount: FormControl;
+  public showSpinner = false;
+  public errorMessage: string;
+  public tables: Array<any>;
+
+  public guests = [
+    {value: '1', name: 'for 1'},
+    {value: '2', name: 'for 2'},
+    {value: '3', name: 'for 3'},
+    {value: '4', name: 'for 4'},
+    {value: '5', name: 'for 5'},
+  ];
 
   constructor(private config: NgbTimepickerConfig,
-              private dateCongig: NgbDatepickerConfig) {
+              private dateConfig: NgbDatepickerConfig,
+              private reservationService: ReservationService,
+              private route: ActivatedRoute,
+              public dialog: MatDialog) {
     const currentDate = new Date();
     config.spinners = false;
-    dateCongig.minDate = {year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate()};
-    dateCongig.maxDate = {year: 2019, month: 2, day: 31};
-    dateCongig.outsideDays = 'hidden';
+    dateConfig.minDate = {year: currentDate.getFullYear(), month: currentDate.getMonth() + 1, day: currentDate.getDate()};
+    dateConfig.outsideDays = 'hidden';
   }
 
   ngOnInit() {
@@ -40,51 +54,55 @@ export class MakeReservationFormComponent implements OnInit {
 
   private createFormControls(): void {
     this.date = new FormControl('', [Validators.required]);
-    this.count = new FormControl('1');
+    this.guestsCount = new FormControl('1');
   }
 
   private createForm(): void {
     this.reserveForm = new FormGroup({
       'date': this.date,
-      'count': this.count,
+      'count': this.guestsCount,
     });
   }
 
-  public alertValidate(event) {
-    ValidateService.alertValidate(event, this.reserveForm);
-  }
-
   submitReservForm() {
-    this.success = true;
     if (this.reserveForm.invalid) {
-      ValidateService.validateAllFormFields(this.reserveForm);
-    } else {
-      const { date, count } = this.reserveForm.getRawValue();
-      const lunch_start = `${this.timer1.hour}:${this.timer1.minute}`;
-      const lunch_end = `${this.timer2.hour}:${this.timer2.minute}`;
-      const request = {
-        day: `${date.year}-${date.month}-${date.day}`,
-        lunch_start,
-        lunch_end,
-        guests_number: count
-      };
-      ReservationService.request = {...request};
-      console.log(ReservationService.request);
-      this.request = true;
-      setTimeout(() => {
-        this.tables = [
-          {
-            time: '11:11 - 12:00',
-          },
-          {
-            time: '13:30 - 14:40',
-          }
-        ];
-        this.success = false;
-        this.request = false;
-        // $('#reservation').modal('show');
-      }, 1500);
+      return ValidateService.validateAllFormFields(this.reserveForm);
     }
+    this.showSpinner = true;
+    const {date, guestsCount} = this.reserveForm.getRawValue();
+    const startTime = `${this.startTime.hour}:${this.startTime.minute}`;
+    const endTime = `${this.endTime.hour}:${this.endTime.minute}`;
+    ReservationService.request = {
+      day: `${date.year}-${date.month}-${date.day}`,
+      lunch_start: startTime,
+      lunch_end: endTime,
+      guests_number: guestsCount,
+      restaurant_id: this.route.snapshot.params.id,
+    };
+    console.log(ReservationService.request);
+    this.reservationService.checkFreeTable(ReservationService.request)
+      .subscribe((data) => {
+        if (!data.data.length) {
+          this.tables = null;
+          this.showSpinner = false;
+          this.dialog.open(ReservationModalComponent, {
+            width: '550px',
+            data: {}
+          });
+        }
+       /* data.data.forEach((time) => {
+          time.startTime = moment(time.startTime).format('HH:mm');
+          time.endTime = moment(time.endTime).format('HH:mm');
+        });*/
+        this.tables = data.data;
+      }, (error) => {
+        console.log(error);
+        this.showSpinner = false;
+        if (error.status === 401) {
+          this.errorMessage = error.error.message;
+        }
+      });
+
   }
 
 }

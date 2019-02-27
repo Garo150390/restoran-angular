@@ -1,10 +1,13 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
 
 import { ValidatorHelper } from '../../../../core/helpers/validator.helper';
 import { ValidateService } from '../../../../core/services/validate.service';
 import { ReservationService } from '../../../../core/services/reservation.service';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -20,8 +23,7 @@ export class ReservationModalComponent implements OnInit {
   public occasions: FormControl;
   public message: FormControl;
   public reservationForms: FormGroup;
-  private restaurant_id: object;
-
+  public spinner = false;
   public celebrations = [
     {value: 'birthday', name: 'Birthday'},
     {value: 'anniversary', name: 'Anniversary'},
@@ -30,12 +32,13 @@ export class ReservationModalComponent implements OnInit {
     {value: 'celebration', name: 'Celebration'},
   ];
 
-  constructor(private reservationServic: ReservationService,
-              private route: ActivatedRoute) {
+  constructor(private reservationService: ReservationService,
+              public dialog: MatDialog,
+              public dialogRef: MatDialogRef<ReservationModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit() {
-    this.restaurant_id = this.route.snapshot.params.id;
     this.createFormControls();
     this.createForm();
   }
@@ -71,22 +74,36 @@ export class ReservationModalComponent implements OnInit {
     });
   }
 
-  public alertValidate(event) {
-    ValidateService.alertValidate(event, this.reservationForms);
-  }
-
   public submitReservationForm() {
     if (this.reservationForms.invalid) {
       ValidateService.validateAllFormFields(this.reservationForms);
     } else {
-      const data = ReservationService.request;
+      const orderedData = ReservationService.request;
       const req = this.reservationForms.getRawValue();
       ReservationService.request = {
-        ...data,
+        ...orderedData,
         ...req,
-        restaurant_id: this.restaurant_id
       };
       console.log(ReservationService.request);
+      this.reservationService.bookingTable(ReservationService.request)
+        .subscribe((data) => {
+          this.dialogRef.close('sax lav e');
+          this.dialog.open(InfoModalComponent, {
+            width: '550px',
+            data: {success: true, data}
+          });
+          this.spinner = false;
+        }, (err: HttpErrorResponse) => {
+          console.log(err);
+          const error = err.error.errors;
+          for (const key in error) {
+            if (error.hasOwnProperty(key) && this[key]) {
+              this[key].setErrors({'incorrect': error[key][0] || error[key]});
+              console.log(this[key]);
+            }
+          }
+          this.spinner = false;
+        });
     }
   }
 }

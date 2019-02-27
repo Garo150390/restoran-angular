@@ -1,44 +1,39 @@
 <form [formGroup]="reserveForm" (ngSubmit)="submitReservForm()"
       class="form-wrap px-3 py-5">
   <div class="form-group">
-    <label for="count"> Guest count
-      <select id="count" formControlName="count" name="count" class="form-select custom-select mt-2">
-        <option value="1">for 1</option>
-        <option value="2">for 2</option>
-        <option value="3">for 3</option>
-        <option value="4">for 4</option>
-      </select>
-    </label>
+    <mat-form-field>
+      <mat-select [formControl]="guestsCount" placeholder="Guest count">
+        <mat-option *ngFor="let count of guests"
+                    [value]="count.value">{{count.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div class="form-group">
-    <div class="col-10 p-0">
-      <div class="input-group">
-        <input class="form-control" placeholder="yyyy-mm-dd" type="text"
+    <div class="col-10 p-0 mb-4 no-gutters">
+      <div class="input-group col-6 col-lg-10">
+        <input matInput class="form-control" placeholder="yyyy-mm-dd" type="text"
                name="date" ngbDatepicker #d="ngbDatepicker"
                aria-describedby="calendar"
-               formControlName="date"
-               (ngModelChange)="alertValidate(date)" #date>
+               formControlName="date">
         <div class="input-group-append">
           <button class="btn icon-calendar"
                   (click)="d.toggle()" type="button" id="calendar">
           </button>
         </div>
       </div>
-      <small *ngIf="reserveForm.controls['date'].dirty
-                    && reserveForm.controls['date'].hasError('required')
-                || reserveForm.controls['date'].touched
-                    && reserveForm.controls['date'].hasError('required')">
-        Date is required
-      </small>
-      <small *ngIf="reserveForm.controls['date'].dirty
-                    && reserveForm.controls['date'].hasError('ngbDate')">
+      <mat-error *ngIf="date.hasError('ngbDate') && date.dirty">
         Please enter correct date
-      </small>
+      </mat-error>
+      <mat-error *ngIf="(date.hasError('required') && date.touched)
+                  || (date.hasError('required') && date.dirty)">
+        Date is <strong>required</strong>
+      </mat-error>
     </div>
     <div class="form-row mx-1">
       <div class="mr-5">
         <label for="startTime">Start time</label>
-        <ngb-timepicker [(ngModel)]="timer1" id="startTime"
+        <ngb-timepicker [(ngModel)]="startTime" id="startTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
 
@@ -46,7 +41,7 @@
       </div>
       <div class="">
         <label for="endTime">End time</label>
-        <ngb-timepicker [(ngModel)]="timer2" id="endTime"
+        <ngb-timepicker [(ngModel)]="endTime" id="endTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
         </ngb-timepicker>
@@ -54,18 +49,17 @@
     </div>
   </div>
 
-
-  <div *ngIf="!success">
-    <div>
-      <app-table-badge *ngFor="let data of tables" [data]="data" class="mx-1"></app-table-badge>
+  <div>
+    <div class="mt-4" *ngIf="tables; else spinner">
+      <app-table-badge *ngFor="let time of tables" [time]="time" class="mr-5"></app-table-badge>
     </div>
   </div>
-  <div *ngIf="request" class="pl-5">
-    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
-  </div>
+  <ng-template #spinner>
+    <div class="ml-5">
+      <mat-progress-spinner *ngIf="showSpinner" [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
+    </div>
+  </ng-template>
+  <div><p class="alert-danger">{{errorMessage}}</p></div>
 
-  <button type="submit" class="btn btn-danger mt-5 d-block"
-          data-target="#reservation"
-  >MAKE RESERVATION
-  </button>
+  <button type="submit" mat-raised-button color="accent" class="btn btn-danger mt-5">MAKE RESERVATION</button>
 </form>

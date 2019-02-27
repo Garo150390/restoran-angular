@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RestauranComponent } from './restauran/restauran.component';
+import { RestaurantComponent } from './restauran/restaurant.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RestauranComponent
+    component: RestaurantComponent
   }
 ];
 

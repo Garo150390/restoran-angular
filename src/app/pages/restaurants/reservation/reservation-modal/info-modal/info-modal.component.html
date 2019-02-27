@@ -1,0 +1,25 @@
+<div *ngIf="data.success, else failure">
+  <h2 mat-dialog-title>Reservation was successful</h2>
+  <mat-dialog-content>
+    <p>Your booking details</p>
+    <mat-list>
+      <mat-list-item *ngFor="let item of data.data | keyvalue">
+        <p matLine>
+          <span class="text-dark">{{item.key}} : </span>
+          <span class="text-italic"> {{item.value}}</span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button [mat-dialog-close]="true">close</button>
+  </mat-dialog-actions>
+</div>
+
+<ng-template #failure>
+  <h2 mat-dialog-title>Reservation failure</h2>
+  <mat-dialog-content>{{ data.data | json }}</mat-dialog-content>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button [mat-dialog-close]="true">close</button>
+  </mat-dialog-actions>
+</ng-template>

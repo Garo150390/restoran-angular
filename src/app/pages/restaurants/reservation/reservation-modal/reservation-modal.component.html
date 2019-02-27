@@ -1,3 +1,4 @@
+<!--
 <form [formGroup]="reservationForms"
       (ngSubmit)="submitReservationForm()">
   <div class="form-row">
@@ -72,3 +73,93 @@
   </div>
   <button type="submit" class="btn btn-primary">Reservation</button>
 </form>
+-->
+
+<mat-dialog-content>
+  <form [formGroup]="reservationForms"
+        (ngSubmit)="submitReservationForm()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="">
+          <input matInput placeholder="Name" [formControl]="name">
+          <mat-error *ngIf="name.hasError('pattern') && name.dirty">
+            Please enter a valid name
+          </mat-error>
+          <mat-error *ngIf="name.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="name.hasError('incorrect')">
+            {{name.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="">
+          <input matInput placeholder="Surname" [formControl]="surname">
+          <mat-error *ngIf="surname.hasError('pattern') && surname.dirty">
+            Please enter a valid surname
+          </mat-error>
+          <mat-error *ngIf="surname.hasError('incorrect')">
+            {{surname.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <mat-form-field class="">
+          <input matInput placeholder="Phone" [formControl]="phone">
+          <mat-error *ngIf="phone.hasError('pattern') && phone.dirty">
+            Phone number must be 055-55-55-55 or (374)-055-55-55-55
+          </mat-error>
+          <mat-error *ngIf="phone.hasError('required')">
+            Phone is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="phone.hasError('incorrect')">
+            {{phone.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field class="">
+          <input matInput placeholder="Email" [formControl]="email">
+          <mat-error *ngIf="email.hasError('pattern') && email.dirty">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="email.hasError('incorrect')">
+            {{email.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form-row justify-content-around">
+      <div class="form group col-md-6">
+        <mat-form-field>
+          <mat-select [formControl]="occasions" placeholder="Select Event">
+            <mat-option *ngFor="let feast of celebrations" [value]="feast.value">{{feast.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="occasions.hasError('incorrect')">
+            {{occasions.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6">
+        <mat-form-field>
+          <textarea [formControl]="message" matInput rows="2" placeholder="Add a special request"></textarea>
+        </mat-form-field>
+        <mat-error *ngIf="message.hasError('incorrect')">
+          {{message.errors['incorrect']}}
+        </mat-error>
+      </div>
+    </div>
+    <div class="row ml-3">
+      <button type="submit" mat-raised-button color="primary">Reservation</button>
+      <div class="ml-5">
+        <mat-progress-spinner *ngIf="spinner" [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>

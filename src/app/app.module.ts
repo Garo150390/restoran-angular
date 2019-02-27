@@ -12,6 +12,7 @@ import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -79,3 +80,5 @@ export function HttpLoaderFactory(http: HttpClient) {
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
