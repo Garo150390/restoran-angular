@@ -20,8 +20,8 @@ declare const $: any;
 export class MakeReservationFormComponent implements OnInit {
 
   public reserveForm: FormGroup;
-  public startTime = {hour: 13, minute: 30};
-  public endTime = {hour: 15, minute: 0};
+  public startTime = { hour: 13, minute: 30 };
+  public endTime = { hour: 15, minute: 0 };
   public date: FormControl;
   public guestsCount: FormControl;
   public showSpinner = false;
@@ -29,11 +29,11 @@ export class MakeReservationFormComponent implements OnInit {
   public tables: Array<any>;
 
   public guests = [
-    {value: '1', name: 'for 1'},
-    {value: '2', name: 'for 2'},
-    {value: '3', name: 'for 3'},
-    {value: '4', name: 'for 4'},
-    {value: '5', name: 'for 5'},
+    {value: '1', name: ' 1'},
+    {value: '2', name: ' 2'},
+    {value: '3', name: ' 3'},
+    {value: '4', name: ' 4'},
+    {value: '5', name: ' 5'},
   ];
 
   constructor(private config: NgbTimepickerConfig,

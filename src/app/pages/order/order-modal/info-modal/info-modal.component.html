@@ -1,0 +1,17 @@
+<div *ngIf="data.success, else failure">
+  <h2 mat-dialog-title class="text-center">Order successfully created</h2>
+  <mat-dialog-content>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button [mat-dialog-close]="true">close</button>
+  </mat-dialog-actions>
+</div>
+
+<ng-template #failure>
+  <mat-dialog-content>
+    <h2 mat-dialog-title class="text-center">Order refused</h2>
+  </mat-dialog-content>
+  <mat-dialog-actions class="justify-content-end">
+    <button mat-button [mat-dialog-close]="true">close</button>
+  </mat-dialog-actions>
+</ng-template>

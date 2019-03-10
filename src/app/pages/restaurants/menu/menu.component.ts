@@ -1,8 +1,9 @@
 import { trigger, style, animate, transition } from '@angular/animations';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 
 import { MenuService } from '../../../core/services/menu.service';
 import { ProductsModel } from '../../../core/models';
+import {StorageService} from '../../../core/services/storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -25,28 +26,30 @@ import { ProductsModel } from '../../../core/models';
     ]),
   ]
 })
-export class MenuComponent implements OnInit, AfterViewInit {
+export class MenuComponent implements OnChanges, AfterViewInit {
 
-  private products: Array<ProductsModel>;
+  @Input()
+  public products: Array<ProductsModel>;
   public productList: Array<ProductsModel>;
-  public menu = ['breakfast', 'lunch', 'dinner', 'budget-meal', 'buffet'];
+  public categories: Array<ProductsModel> = [];
 
   @ViewChild('filters')
   private filters;
-
   private childrens;
 
-  constructor(private menuService: MenuService) {
+  constructor() {
   }
 
-  ngOnInit() {
-    this.menuService.getProducts()
-      .subscribe((products) => {
-        this.products = products;
-        this.productList = this.products;
-      }, (error) => {
-        console.log(error);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.products) {
+      this.productList = this.products.filter(product => {
+        if (product.parent_id === 0) {
+          this.categories.push(product);
+          return false;
+        }
+        return true;
       });
+    }
   }
 
   ngAfterViewInit(): void {
@@ -59,10 +62,11 @@ export class MenuComponent implements OnInit, AfterViewInit {
     }
     elem.classList.add('active');
     if (elem.dataset.filter === '*') {
-      return this.productList = this.products;
+      return this.productList = this.products.filter(product => product.parent_id !== 0);
     }
     this.productList = this.products.filter((product) => {
-      return product.category === elem.dataset.filter;
+      console.log(elem.dataset.filter, product.parent_id);
+      return product.parent_id === parseInt(elem.dataset.filter, 10);
     });
   }
 

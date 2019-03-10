@@ -4,7 +4,14 @@
     "about": "About",
     "contact": "Contact",
     "blog": "Blog",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "order": "Order",
+    "restaurants": "Restaurants",
+    "homePage": {
+      "bannerText": "Wide Options of Choice",
+      "recipes": "Delicious Recipes",
+      "bannerContent": "inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women."
+    }
   },
   "home": {
     "title": "Restaurants"
@@ -22,5 +29,33 @@
     "total": "total",
     "total_price": "TOTAL PRICE",
     "btn": "order products"
+  },
+  "products": {
+    "view_btn": "View more",
+    "valuate": "AM"
+  },
+  "menu": {
+    "title": "What kind of Foods we serve for you",
+    "desc": "Who are in extremely love with eco friendly system"
+  },
+  "reservation": {
+    "title": "Reserve Your Seats to Confirm if You Come with Your Family",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
+    "reservation": "Reservation",
+    "make_reservation": "MAKE RESERVATION",
+    "form": {
+      "start_time": "Start time",
+      "end_time": "End time",
+      "for": "person",
+      "guest_count": "Guest count"
+    }
+  },
+  "form": {
+    "required_name": "Name is required",
+    "required_surname": "Surname is required",
+    "required_email": "Email is required",
+    "required_phone": "Phone is required",
+    "required_date": "Date is required",
+    "valid_date": "Please enter correct date"
   }
 }

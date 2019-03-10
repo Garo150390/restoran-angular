@@ -1,23 +1,17 @@
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatFormFieldModule,
-  MatProgressSpinnerModule
-} from '@angular/material';
 import { NgModule } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { GalleryModule } from '@ngx-gallery/core';
 import { LightboxModule } from '@ngx-gallery/lightbox';
 import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LangInterceptor } from './core/interceptor/lang.interceptor';
 import { ContactComponent } from './pages/contact/contact.component';
 import {
   RestaurantCardComponent
@@ -30,6 +24,7 @@ import { OrderModule } from './pages/order/order.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { MaterialModule } from './shared/material.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -50,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule,
     CoreModule,
     SharedModule,
     BlogsModule,
@@ -66,19 +62,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     LightboxModule,
     GallerizeModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
   ],
   providers: [
     /*{
-      provide: OverlayContainer,
-      useFactory: () => new AppOverlayContainer(PhotoGalleryModule)
+      provide: HTTP_INTERCEPTORS,
+      useClass: LangInterceptor,
+      multi: true
     },*/
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);

@@ -5,10 +5,6 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef
-} from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MakeReservationFormComponent } from './reservation/make-reservation-form/make-reservation-form.component';
@@ -18,25 +14,27 @@ import { InfoModalComponent } from './reservation/reservation-modal/info-modal/i
 import { ReservationService } from '../../core/services/reservation.service';
 import { ReservationComponent } from './reservation/reservation.component';
 import { RestaurantsRoutingModule } from './restaurants-routing.module';
-import { ProductsComponent } from './menu/products/products.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ProductsCardComponent } from './menu/products-card/products-card.component';
 import { ValidateService } from '../../core/services/validate.service';
-import { RestaurantComponent } from './restauran/restaurant.component';
 import { MenuService } from '../../core/services/menu.service';
+import { MaterialModule } from '../../shared/material.module';
 import { SharedModule } from '../../shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
-import { MaterialModule } from './material.module';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
   declarations: [
     RestaurantComponent,
     MenuComponent,
-    ProductsComponent,
+    ProductsCardComponent,
     ReservationComponent,
     ReservationModalComponent,
     MakeReservationFormComponent,
     TableBadgeComponent,
-    InfoModalComponent
+    InfoModalComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,
@@ -50,8 +48,6 @@ import { MaterialModule } from './material.module';
 
   ],
   providers: [
-    { provide: MatDialogRef, useValue: {} },
-    { provide: MAT_DIALOG_DATA, useValue: [] },
     MenuService,
     ReservationService,
     ValidateService

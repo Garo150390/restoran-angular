@@ -1,4 +1,4 @@
-<app-banner [name]="'restaurants'"></app-banner>
+<app-banner [name]="'header.restaurants' | translate"></app-banner>
 
 <section class="home-about-area section-gap">
   <div class="container">
@@ -11,12 +11,12 @@
         <a href="#" class="primary-btn btn btn-danger rounded-0">view full menu</a>
       </div>
       <div class="col-lg-6 home-about-right">
-        <img class="img-fluid" src="assets/images/about-img.jpg" alt="">
+        <img class="img-fluid" [src]="restaurant?.avatar" alt="avatar">
       </div>
     </div>
   </div>
 </section>
 
-<app-menu></app-menu>
+<app-menu [products]="restaurant?.products"></app-menu>
 
 <app-reservation></app-reservation>

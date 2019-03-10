@@ -7,6 +7,11 @@
         width: 100px;
         height: 100px;
       }
+      .wrap {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
     }
     th {
       text-align: center;

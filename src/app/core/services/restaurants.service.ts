@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
-import { RestaurantsModel } from '../models';
+import {AllRestaurantModel, RestaurantModel, RestaurantsDataModel, SingleRestaurantDataModel} from '../models';
 
 @Injectable()
 export class RestaurantsService {
@@ -12,16 +12,32 @@ export class RestaurantsService {
   constructor(private http: HttpClient) {
   }
 
-  public getRestaurants(): Observable<Array<RestaurantsModel>> {
-    return this.http.get<Array<RestaurantsModel>>(`${environment.apiEndPoint}restaurants.json`);
+  public getRestaurants(): Observable<Array<RestaurantModel>> {
+    const params = new HttpParams().set('limit', '10').set('offset', '0');
+    return this.http.get<RestaurantsDataModel>(`${environment.apiEndPoint}/restaurant`, { params })
+      .pipe(
+        map( restaurantData => restaurantData.data),
+        map(restaurants => {
+          restaurants.map(restaurant => {
+            restaurant.avatar = `${environment.imagePath}/restaurant_images/${restaurant.avatar}`;
+            return restaurant;
+          });
+          return restaurants;
+        })
+      );
   }
 
-  public getRestaurantById(id): Observable<RestaurantsModel> {
-    return this.http.get<RestaurantsModel>(`${environment.apiEndPoint}/restaurants/${id}`)
+  public getRestaurantById(id): Observable<AllRestaurantModel> {
+    return this.http.get<SingleRestaurantDataModel>(`${environment.apiEndPoint}/restaurant/${id}`)
       .pipe(
-        map(res => {
-          res.avatar = `${environment.apiEndPoint}/${res.avatar}`;
-          return res;
+        map( restaurantData => restaurantData.data),
+        map(restaurant => {
+          restaurant.avatar = `${environment.imagePath}/restaurant_images/${restaurant.avatar}`;
+          restaurant.products.map(product => {
+            product.avatar = `${environment.imagePath}/products/${product.avatar}`;
+            return product;
+          });
+          return restaurant;
         })
       );
   }

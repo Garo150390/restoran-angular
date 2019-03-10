@@ -1,27 +1,26 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  DoCheck,
+} from '@angular/core';
 
-import { StorageService } from '../../core/services/storage.service';
-import { OrderService } from '../../core/services/order.service';
-import { OrderProductsModel } from '../../core/models';
+import {OrderService} from '../../core/services/order.service';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss']
+  styleUrls: ['./order.component.scss'],
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent implements DoCheck {
 
-  public products: Array<OrderProductsModel> = [];
+  public productsCount: number = OrderService.orders.length;
 
-  constructor(private orderService: OrderService) {
+  constructor() {
   }
 
-  ngOnInit() {
-    if (StorageService.getData('orders')) {
-      this.orderService.orders = JSON.parse(StorageService.getData('orders'));
+  ngDoCheck(): void {
+    if (!OrderService.orders.length) {
+      this.productsCount = 0;
     }
-
-    this.products = this.orderService.orders;
   }
 
 }

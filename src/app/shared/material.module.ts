@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+  MAT_DIALOG_DATA,
   MatButtonModule,
   MatCheckboxModule,
   MatDialogModule,
+  MatDialogRef, MatFormFieldModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatSelectModule
@@ -14,6 +16,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
   exports: [
     CommonModule,
     MatButtonModule,
@@ -21,6 +27,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatInputModule,

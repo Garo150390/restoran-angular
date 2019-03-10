@@ -27,4 +27,15 @@ export class ValidateService {
       }
     });
   }
+
+  static markAsIncorrect(obj, component): boolean {
+    let validationError = false;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key) && component[key]) {
+        validationError = true;
+        component[key].setErrors({'incorrect': obj[key][0]});
+      }
+    }
+    return validationError;
+  }
 }

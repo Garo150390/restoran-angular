@@ -34,12 +34,12 @@ export class GalleryService {
 
   public getPhotos(id): Observable<GalleryModel> {
     const params = new HttpParams().set('offset', id).set('limit', '10');
-    return this.http.get<GalleryModel>(`${environment.apiEndPoint}gallery.json`, { params });
+    return this.http.get<GalleryModel>(`${environment.jsonDB}gallery.json`, { params });
   }
 
   public getPhotos2(id): Observable<GalleryModel> {
     const params = new HttpParams().set('offset', id);
-    return this.http.get<GalleryModel>(`${environment.apiEndPoint}gallery2.json`, { params });
+    return this.http.get<GalleryModel>(`${environment.jsonDB}gallery2.json`, { params });
   }
 
   public getGalleryItem(images: Array<ImageModel>): Array<ImageItem> {

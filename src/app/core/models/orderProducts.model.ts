@@ -1,5 +1,5 @@
 export interface OrderProductsModel {
-  id: string;
+  id: number;
   title: string;
   count: number;
   price: number;

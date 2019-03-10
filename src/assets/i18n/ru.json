@@ -4,23 +4,58 @@
     "about": "О нас",
     "contact": "контакт",
     "blog": "Блог",
-    "gallery": "Галерея"
+    "gallery": "Галерея",
+    "order": "Заказы",
+    "restaurants": "Рестораны",
+    "homePage": {
+      "bannerText": "Широкие варианты выбора",
+      "recipes": "Вкусные Рецепты",
+      "bannerContent": "неуместное поведение часто высмеивается, поскольку «мальчики будут мальчиками», женщины сталкиваются с более высокими стандартами поведения, особенно на рабочем месте. Вот почему так важно, как женщинам."
+    }
   },
   "home": {
     "title": "Рестораны"
   },
   "not_found": {
-    "text": "Oops, The Page you are looking for can't be found!",
-    "text2": "Return To Homepage"
+    "text": "К сожалению, страница, которую вы ищете, не может быть найдена!",
+    "text2": "Вернуться на главную страницу"
   },
   "order" : {
-    "not_order": "Order list is empty",
-    "image": "image",
-    "name": "name",
-    "count": "count",
-    "price": "price",
-    "total": "total",
-    "total_price": "TOTAL PRICE",
-    "btn": "order products"
+    "not_order": "Список заказов пуст",
+    "image": "изображение",
+    "name": "название",
+    "count": "счет",
+    "price": "цена",
+    "total": "сумма",
+    "total_price": "ИТОГОВАЯ ЦЕНА",
+    "btn": "заказать продукты"
+  },
+  "products": {
+    "view_btn": "Посмотреть больше",
+    "valuate": "Драм"
+  },
+  "menu": {
+    "title": "Какие продукты мы предлагаем вам",
+    "desc": "Кто очень любит экологически чистую систему"
+  },
+  "reservation": {
+    "title": "Зарезервируйте свои места, чтобы подтвердить, если вы приедете со своей семьей",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
+    "reservation": "Бронирование",
+    "make_reservation": "Забронировать",
+    "form": {
+      "start_time": "Начало",
+      "end_time": "Конец",
+      "for": "человек",
+      "guest_count": "Количество гостей"
+    }
+  },
+  "form": {
+    "required_name": "Имя обязательно",
+    "required_surname": "Фамилия обязательна",
+    "required_email": "Электронная почта обезательно",
+    "required_phone": "Телефон обязательно",
+    "required_date": "Дата обязательна",
+    "valid_date": "Пожалуйста, введите правильную дату"
   }
 }

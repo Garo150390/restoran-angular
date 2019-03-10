@@ -2,9 +2,10 @@
       class="form-wrap px-3 py-5">
   <div class="form-group">
     <mat-form-field>
-      <mat-select [formControl]="guestsCount" placeholder="Guest count">
+      <mat-select [formControl]="guestsCount"
+                  [placeholder]="'reservation.form.guest_count' | translate">
         <mat-option *ngFor="let count of guests"
-                    [value]="count.value">{{count.name}}
+                    [value]="count.value">{{count.name }} {{ 'reservation.form.for' | translate}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -23,16 +24,16 @@
         </div>
       </div>
       <mat-error *ngIf="date.hasError('ngbDate') && date.dirty">
-        Please enter correct date
+        {{ 'form.valid_date' | translate }}
       </mat-error>
       <mat-error *ngIf="(date.hasError('required') && date.touched)
                   || (date.hasError('required') && date.dirty)">
-        Date is <strong>required</strong>
+        {{ 'form.required_date' | translate}}
       </mat-error>
     </div>
     <div class="form-row mx-1">
       <div class="mr-5">
-        <label for="startTime">Start time</label>
+        <label for="startTime">{{ 'reservation.form.start_time' | translate }}</label>
         <ngb-timepicker [(ngModel)]="startTime" id="startTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
@@ -40,7 +41,7 @@
         </ngb-timepicker>
       </div>
       <div class="">
-        <label for="endTime">End time</label>
+        <label for="endTime">{{ 'reservation.form.end_time' | translate }}</label>
         <ngb-timepicker [(ngModel)]="endTime" id="endTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
@@ -61,5 +62,7 @@
   </ng-template>
   <div><p class="alert-danger">{{errorMessage}}</p></div>
 
-  <button type="submit" mat-raised-button color="accent" class="btn btn-danger mt-5">MAKE RESERVATION</button>
+  <button type="submit" mat-raised-button color="accent" class="btn btn-danger mt-5">
+    {{ 'reservation.make_reservation' | translate}}
+  </button>
 </form>

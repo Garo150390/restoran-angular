@@ -2,7 +2,7 @@
 @import "../../../../node_modules/bootstrap/scss/bootstrap";
 
 .about-banner {
-  background:url('../../../assets/images/top-banner.webp') no-repeat bottom right/cover;
+  background:url('../../../assets/images/top-banner.webp') no-repeat fixed right/cover;
   background-size:cover;
   .overlay-bg{
     background: rgba(#04091e,.40);

@@ -1,29 +1,31 @@
-<div>
+<div class="table-responsive">
   <table class="table table-hover">
     <thead>
     <tr>
-      <th scope="col-2">{{ 'order.image' | translate }}</th>
-      <th scope="col">{{ 'order.name' | translate}}</th>
-      <th scope="col">{{ 'order.count' | translate}}</th>
-      <th scope="col-2">{{ 'order.price' | translate}}</th>
-      <th scope="col">{{ 'order.total' | translate}}</th>
+      <th scope="colgroup">{{ 'order.image' | translate }}</th>
+      <th scope="colgroup">{{ 'order.name' | translate}}</th>
+      <th scope="colgroup">{{ 'order.count' | translate}}</th>
+      <th scope="colgroup">{{ 'order.price' | translate}}</th>
+      <th scope="colgroup">{{ 'order.total' | translate}}</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let prod of products; let i = index;">
-      <td><img src="assets/images/products/{{prod.img}}" alt="product image"></td>
-      <td align="center">{{prod?.title}}</td>
+      <td><img [src]="prod.img" alt="product image"></td>
+      <td align="center">
+        <p class="wrap">{{prod?.title}}</p>
+      </td>
       <td>
-        <button class="btn btn-danger mx-2"
+        <button class="btn btn-danger mx-2 py-0 px-2"
                 (click)="reduceCount(i)">-
         </button>
         {{prod?.count}}
-        <button class="btn btn-success mx-2"
+        <button class="btn btn-success mx-2 py-0 px-2"
                 (click)="addCount(i)">+
         </button>
       </td>
-      <td>{{prod.price}}</td>
-      <td>{{prod?.price * prod.count}}</td>
+      <td>{{prod.price}} {{'products.valuate' | translate}}</td>
+      <td>{{prod?.price * prod.count}} {{'products.valuate' | translate}}</td>
       <td class="pt-1"><i class="icon-trash-empty btn" (click)="deleteProduct(i)"></i></td>
     </tr>
     <tr>
@@ -36,8 +38,7 @@
   </table>
   <div class="d-flex justify-content-end mb-5">
     <button type="button" class="btn btn-info"
-            data-toggle="modal" data-target="#orderProducts"
-            (click)="sendData()">
+            (click)="openDialog()">
       {{ 'order.btn' | translate}}
     </button>
   </div>

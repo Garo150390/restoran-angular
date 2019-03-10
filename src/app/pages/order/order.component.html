@@ -1,12 +1,8 @@
-<app-banner [name]="'order'"></app-banner>
-<div class="order_body col-7 mx-auto mt-5">
-  <div *ngIf="products.length; else NotOrder">
-    <app-ordered-products [products]="products"></app-ordered-products>
+<app-banner [name]="'header.order' | translate"></app-banner>
+<div class="order_body col-12 col-lg-8 mx-auto mt-5">
+  <div *ngIf="productsCount; else NotOrder">
+    <app-ordered-products></app-ordered-products>
   </div>
-</div>
-
-<div class="modal fade" id="orderProducts" tabindex="-1" role="dialog" aria-hidden="true">
-  <app-order-modal></app-order-modal>
 </div>
 
 <ng-template class="empty_order" #NotOrder>

@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="single-menu">
+    <img [src]="product?.avatar" alt="product"
+         style="height: 10rem;"
+         class="card-img-top pointer"
+         (click)="open()">
+    <div class="card-body">
+      <h3 class="card-title text-overflow pointer text-center text-danger" [title]="product?.name_en">{{product?.name_en}}</h3>
+      <p class="text-overflow text-secondary">{{product?.description_en}}</p>
+      <div class="row offset-2 justify-content-around mt-5">
+        <h3 class="price">{{product?.price}} {{'products.valuate' | translate}}</h3>
+        <i class="icon-basket pointer"
+           title="Add to card"
+           (click)="addToOrder(product)">
+        </i>
+      </div>
+    </div>
+    <div class="card-content mx-3">
+      <button mat-raised-button class="mb-3"
+              (click)="addToStorage(product)"
+              [routerLink]="['products', product.id]">
+        {{ 'products.view_btn' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

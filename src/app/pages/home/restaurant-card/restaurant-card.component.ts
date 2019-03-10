@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RestaurantsModel } from '../../../core/models';
+import { RestaurantModel } from '../../../core/models';
 
 @Component({
   selector: 'app-restaurant-card',
@@ -9,7 +9,7 @@ import { RestaurantsModel } from '../../../core/models';
 export class RestaurantCardComponent {
 
   @Input()
-  public restaurant: RestaurantsModel;
+  public restaurant: RestaurantModel;
 
   constructor() { }
 }

@@ -1,4 +1,3 @@
-import 'rxjs/add/observable/from';
 import { ReplaySubject} from 'rxjs';
 import { DoCheck, Injectable} from '@angular/core';
 
@@ -8,42 +7,45 @@ import { OrderProductsModel } from '../models';
 @Injectable()
 export class OrderService implements DoCheck {
 
-  public orders: Array<OrderProductsModel> = [];
+  static orders: Array<OrderProductsModel> = [];
+
+  public shmbl: any = [];
 
   private ordersSubject = new ReplaySubject<number>(1);
   public ordersCount = this.ordersSubject.asObservable();
 
   constructor() {
     if (StorageService.getData('orders')) {
-      this.orders = JSON.parse(StorageService.getData('orders'));
+      OrderService.orders = JSON.parse(StorageService.getData('orders'));
     }
   }
 
   public addToOrders(product: OrderProductsModel) {
     let exist = false;
-    this.orders.forEach((prod) => {
+    OrderService.orders.forEach((prod) => {
       if (prod.id === product.id) {
         exist = true;
       }
     });
     if (!exist) {
-      this.orders.push(product);
-      this.ordersSubject.next(this.orders.length);
-      StorageService.saveItem('orders', JSON.stringify(this.orders));
-      JSON.parse(StorageService.getData(product.id));
+      OrderService.orders.push(product);
+      this.ordersSubject.next(OrderService.orders.length);
+      StorageService.saveItem('orders', JSON.stringify(OrderService.orders));
+      // JSON.parse(StorageService.getData(product.id.toString()));
     }
   }
 
   ngDoCheck(): void {
-    this.ordersSubject.next(this.orders.length);
+    console.log('poxvav');
+    this.ordersSubject.next(OrderService.orders.length);
   }
 
   public changeDetect() {
-    console.log(this.orders);
-    if (!this.orders.length) {
+    StorageService.saveItem('orders', JSON.stringify(OrderService.orders));
+    if (!OrderService.orders.length) {
       return this.ordersSubject.next(0);
     }
-    this.ordersSubject.next(this.orders.length);
-    console.log(this.orders.length);
+    console.log(OrderService.orders.length);
+    this.ordersSubject.next(OrderService.orders.length);
   }
 }

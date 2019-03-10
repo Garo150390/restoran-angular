@@ -14,10 +14,10 @@ export class ReservationService {
 
   public checkFreeTable(query): Observable<any> {
     const params = new HttpParams().set('check', 'true');
-    return this.http.get<any>(`${environment.apiEndPoint}tables.json`, { params });
+    return this.http.get<any>(`${environment.jsonDB}tables.json`, { params });
   }
 
   public bookingTable(query): Observable<any> {
-    return this.http.post<any>(`${environment.apiEndPoint}/tables/reservation.json`, query);
+    return this.http.post<any>(`${environment.jsonDB}/tables/reservation.json`, query);
   }
 }

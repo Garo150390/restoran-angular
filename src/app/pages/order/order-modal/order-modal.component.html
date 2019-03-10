@@ -1,84 +1,84 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">Order</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div>
-        <form [formGroup]="orderForms"
-              (ngSubmit)="sendOrderForms()">
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col">
-                <input formControlName="name" type="text"
-                       class="form-control" placeholder="Name" name="name"
-                       (keyup)="alertValidate(name)" #name>
-                <small *ngIf="(orderForms.controls['name'].dirty &&
-        orderForms.controls['name'].hasError('required')) ||
-         (orderForms.controls['name'].touched &&
-         orderForms.controls['name'].hasError('required'))">
-                  Name is required
-                </small>
-                <small *ngIf="orderForms.controls['name'].dirty
-           && orderForms.controls['name'].hasError('pattern')">
-                  Invalid name
-                </small>
-              </div>
-              <div class="col">
-                <input formControlName="phone" type="text" class="form-control" placeholder="Phone Number" name="phone"
-                       (keyup)="alertValidate(phone)" #phone>
-                <small *ngIf="(orderForms.controls['phone'].dirty &&
-        orderForms.controls['phone'].hasError('required')) ||
-         (orderForms.controls['phone'].touched &&
-         orderForms.controls['phone'].hasError('required'))">
-                  Phone is required
-                </small>
-                <small *ngIf="orderForms.controls['phone'].dirty
-           && orderForms.controls['phone'].hasError('pattern')">
-                  Invalid phone
-                </small>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="mb-3">
-              <input formControlName="address" type="text" class="form-control" placeholder="Address">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input #payment class="form-check-input" (click)="checked(payment.checked)"
-                     type="checkbox" id="gridCheck">
-              <label class="form-check-label" for="gridCheck">
-                Card payment
-              </label>
-              <div *ngIf="pay">
-                <ul class="nav mt-3 align-baseline">
-                  <li class="mx-3">
-                    <div><img src="assets/images/elements/ameria.webp" height="52" alt=""></div>
-                    <span>Credit Card</span>
-                  </li>
-                  <li>
-                    <div><img src="assets/images/elements/mobidram.webp" height="52" alt=""></div>
-                    <span>Mobidram</span>
-                  </li>
-                  <li class="mx-3">
-                    <div><img src="assets/images/elements/idram.webp" height="52" alt=""></div>
-                    <span>iDram</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Send</button>
-          </div>
-        </form>
+<mat-dialog-content>
+  <h5 mat-dialog-title >Order</h5>
+  <div>
+    <form [formGroup]="orderForms"
+          (ngSubmit)="sendOrderForms()">
+      <div class="form-group px-3">
+        <div class="form-row">
+          <mat-form-field class="col">
+            <input matInput placeholder="Name" [formControl]="name">
+            <mat-error *ngIf="name.hasError('pattern') && name.dirty">
+              Please enter a valid name
+            </mat-error>
+            <mat-error *ngIf="name.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="name.hasError('incorrect')">
+              {{name.errors['incorrect']}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col">
+            <input matInput placeholder="Phone" [formControl]="phone">
+            <mat-error *ngIf="phone.hasError('pattern') && phone.dirty">
+              Please enter a valid phone
+            </mat-error>
+            <mat-error *ngIf="phone.hasError('required')">
+              Phone is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="phone.hasError('incorrect')">
+              {{phone.errors['incorrect']}}
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-
+      <div class="form-group">
+        <mat-form-field class="col">
+          <input matInput placeholder="Address" [formControl]="address">
+          <mat-error *ngIf="address.hasError('pattern') && address.dirty">
+            Please enter a valid address
+          </mat-error>
+          <mat-error *ngIf="address.hasError('required')">
+            Address is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="address.hasError('incorrect')">
+            {{address.errors['incorrect']}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input #payment class="form-check-input" (click)="checked(payment.checked)"
+                 type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            Card payment
+          </label>
+          <div *ngIf="pay">
+            <ul class="nav mt-3 align-baseline">
+              <li class="mx-3">
+                <div><img src="assets/images/elements/ameria.webp" height="52" alt=""></div>
+                <span>Credit Card</span>
+              </li>
+              <li>
+                <div><img src="assets/images/elements/mobidram.webp" height="52" alt=""></div>
+                <span>Mobidram</span>
+              </li>
+              <li class="mx-3">
+                <div><img src="assets/images/elements/idram.webp" height="52" alt=""></div>
+                <span>iDram</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row ml-3">
+        <button type="submit" mat-raised-button color="primary">Send</button>
+        <div class="ml-5">
+          <mat-progress-spinner *ngIf="spinner" [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
+        </div>
+      </div>
+    </form>
   </div>
-</div>
+</mat-dialog-content>
+<mat-dialog-actions class="justify-content-end">
+  <button mat-button [mat-dialog-close]="true">close</button>
+</mat-dialog-actions>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RestaurantsService } from '../../core/services/restaurants.service';
-import { RestaurantsModel } from '../../core/models';
+import { RestaurantModel } from '../../core/models';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { RestaurantsModel } from '../../core/models';
 })
 export class HomeComponent implements OnInit {
 
-  public resataurantsList: Array<RestaurantsModel>;
+  public restaurantsList: Array<RestaurantModel>;
 
   constructor(private restaurantsService: RestaurantsService) {
   }
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.restaurantsService.getRestaurants()
       .subscribe((data) => {
-        this.resataurantsList = data;
+        this.restaurantsList = data;
       },
         (error) => {
           console.log(error);

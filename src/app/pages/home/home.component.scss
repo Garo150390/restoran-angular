@@ -1,2 +1,45 @@
 @import "~src/assets/scss/core/variables";
 
+.banner-area {
+  background: url('../../../assets/images/hero-bg.jpg') no-repeat fixed center/cover;
+  background-size: cover;
+  height: 100%;
+  @media(max-width: 767px) {
+    height: 767px !important;
+  }
+
+  .fullscreen {
+    height: 100%;
+  }
+}
+
+.banner-content {
+  @media(max-width: 1024px) {
+    margin-top: 100px;
+  }
+  @media(max-width: 736px) and (min-width: 415px) {
+    margin-top: 240px;
+  }
+  margin-top: 100px;
+
+  h6 {
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+
+  h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin: 20px 0;
+    @media(max-width: 767px) {
+      font-size: 40px;
+    }
+  }
+
+  p {
+    max-width: 515px;
+    margin-bottom: 30px;
+  }
+
+}

@@ -4,14 +4,21 @@
     "about": "մեր մասին",
     "contact": "Կապ",
     "blog": "Օրագիր",
-    "gallery": "Պատկերասրահ"
+    "gallery": "Պատկերասրահ",
+    "order": "Պատվերներ",
+    "restaurants": "Ռեստորաններ",
+    "homePage": {
+      "bannerText": "Ընտրության լայն տեսականի",
+      "recipes": "Համեղ բաղադրատոմսեր",
+      "bannerContent": "inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women."
+    }
   },
   "home": {
     "title": "Ռեստորաններ"
   },
   "not_found": {
-    "text": "Oops, The Page you are looking for can't be found!",
-    "text2": "Return To Homepage"
+    "text": "Վա՜յ, էջը, որը փնտրում եք, հնարավոր չէ գտնել",
+    "text2": "Վերադարնալ գլխավոր էջ"
   },
   "order" : {
     "not_order": "Պատվերներ չկան",
@@ -22,5 +29,33 @@
     "total": "Ընդհանուր",
     "total_price": "Ընդհանուր գին",
     "btn": "պատվիրել"
+  },
+  "products": {
+    "view_btn": "Դիտել ավելին",
+    "valuate": "Դրամ"
+  },
+  "menu": {
+    "title": "Ինչ մթերքներ ենք առաջարկում նրանց",
+    "desc": "Ովքեր սիրում էն էկոլոգիապես մաքուր սնունդ"
+  },
+  "reservation": {
+    "title": "Ամրագրեք ձեր տեղերը, եթե այցելելու էք ընտանիքով",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
+    "reservation": "Ամրագրել",
+    "make_reservation": "Ամրագրել",
+    "form": {
+      "start_time": "Սկիզբ",
+      "end_time": "Ավարտ",
+      "for": "հոգի",
+      "guest_count": "Այցելուների քանակը"
+    }
+  },
+  "form": {
+    "required_name": "Անունը պարտադիր է",
+    "required_surname": "Ազգանունը պարտադիր է",
+    "required_email": "էլ․ հասցեն  պարտադիր է",
+    "required_phone": "հեռախոսը պարտադիր է",
+    "required_date": "ամսաթիվը պարտադիր է",
+    "valid_date": "Խնդրում ենք մուտքագրել ճիշտ ամսաթիվ"
   }
 }

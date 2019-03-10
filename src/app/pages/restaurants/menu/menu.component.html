@@ -3,17 +3,18 @@
     <div class="row d-flex justify-content-center">
       <div class="menu-content pb-70 col-lg-8">
         <div class="title text-center">
-          <h1 class="mb-10">What kind of Foods we serve for you</h1>
-          <p>Who are in extremely love with eco friendly system.</p>
+          <h1 class="mb-10 text-nowrap">{{ 'menu.title' | translate }}</h1>
+          <p>{{ 'menu.desc' | translate }}</p>
         </div>
       </div>
     </div>
 
-    <ul class="filter-wrap filters col-lg-12 no-padding" #filters>
-      <li (click)="changeMenu($event.target)" data-filter="*" class="active">All Menu</li>
-      <li *ngFor="let item of menu" [attr.data-filter]="item"
-          (click)="changeMenu($event.target)">
-        {{item}}
+    <ul class="filter-wrap filters col-lg-12 no-padding"
+        (click)="changeMenu($event.target)" #filters>
+      <li data-filter="*" class="active">All Menu</li>
+      <li *ngFor="let item of categories"
+          [attr.data-filter]="item.id">
+        {{item.name_en}}
       </li>
     </ul>
 
@@ -21,7 +22,7 @@
       <div class="row grid">
         <div class="col-md-3 p-2" *ngFor="let product of productList"
              [@fadeInOut]="'show'">
-          <app-products [product]="product"></app-products>
+          <app-products-card [product]="product"></app-products-card>
         </div>
       </div>
     </div>

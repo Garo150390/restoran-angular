@@ -1,0 +1,53 @@
+@import "~src/assets/scss/core/variables";
+
+.card {
+
+  border-radius: 5px;
+
+  &:hover {
+    border: 1px solid $primary-color
+  }
+
+  .single-menu {
+    background: $white;
+    min-height: 25em;
+    border-radius: 5px;
+
+    .title-wrap {
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 392px;
+    }
+
+    .card-content {
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: column;
+      display: flex;
+      flex: 1 1;
+    }
+
+    .card-body {
+      flex: 0 1 auto;
+
+      .text-overflow {
+        white-space: nowrap;
+        overflow-x: hidden;
+        text-overflow: ellipsis;
+      }
+
+    }
+
+    .price {
+      color: $primary-color;
+    }
+
+    .icon-basket {
+      font-size: 20px;
+      color: $primary-color;
+    }
+  }
+
+}
