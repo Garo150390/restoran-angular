@@ -12,42 +12,32 @@ import {GalleryModel, ImageModel} from '../models/';
 })
 export class GalleryService {
 
+  static readonly limit = 10;
+
   constructor(private http: HttpClient) { }
 
-  /*public getPhotos(id): Observable<{data: ImageItem[], total: number}> {
-    const params = new HttpParams().set('offset', id).set('limit', '9');
-    return this.http.get<GalleryModel>(`${environment.apiEndPoint}gallery.json`, { params })
+  public getPhotos(page): Observable<GalleryModel> {
+    const offset = page !== 1 ? (page - 1) * GalleryService.limit : 0;
+    const params = new HttpParams().set('offset', `${offset}`).set('limit', `${GalleryService.limit}`);
+    return this.http.get<GalleryModel>(`${environment.apiEndPoint}/restaurant_image`, { params })
       .pipe(
-          map(res => {
-            const data: Array<ImageItem> = [];
-            res.data.map((item) => {
-              data.push(new ImageItem({
-                src: 'assets/images/gallery/' + item.name,
-                thumb: 'assets/images/gallery/' + item.name,
-              }));
+          map(gallery => {
+            gallery.data.map((item) => {
+              item.name = `${environment.imagePath}${item.name}`;
+              return item;
             });
-            return { data, total: res.total};
+            return gallery;
           },
         )
       );
-  }*/
-
-  public getPhotos(id): Observable<GalleryModel> {
-    const params = new HttpParams().set('offset', id).set('limit', '10');
-    return this.http.get<GalleryModel>(`${environment.jsonDB}gallery.json`, { params });
-  }
-
-  public getPhotos2(id): Observable<GalleryModel> {
-    const params = new HttpParams().set('offset', id);
-    return this.http.get<GalleryModel>(`${environment.jsonDB}gallery2.json`, { params });
   }
 
   public getGalleryItem(images: Array<ImageModel>): Array<ImageItem> {
     const data: Array<ImageItem> = [];
     images.map((item) => {
       data.push(new ImageItem({
-        src: 'assets/images/gallery/' + item.name,
-        thumb: 'assets/images/gallery/' + item.name,
+        src: item.name,
+        thumb: item.name,
       }));
     });
     return data;

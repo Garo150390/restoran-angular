@@ -1,0 +1,15 @@
+<form class="pt-5">
+  <div class="row position-relative">
+    <label>{{'order.form.quantity' | translate }}</label>
+    <button class="btn btn-outline-danger m-2 py-0 px-2"
+            (click)="reduceCount()">-
+    </button>
+    <p class="p-0 my-2">{{count}}</p>
+    <button class="btn btn-outline-primary m-2 py-0 px-2 mr-5"
+            (click)="addCount()">+
+    </button>
+    <button mat-raised-button color="warn"
+    (click)="addToOrder()">Add to card
+    </button>
+  </div>
+</form>

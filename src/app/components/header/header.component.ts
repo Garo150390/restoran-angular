@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 
 import { OrderService } from '../../core/services/order.service';
 import { StorageService } from '../../core/services/storage.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(private orderService: OrderService,
               private translate: TranslateService) {
+
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
     }

@@ -17,8 +17,10 @@
 </div>
 
 <ng-template #failure>
-  <h2 mat-dialog-title>Reservation failure</h2>
-  <mat-dialog-content>{{ data.data | json }}</mat-dialog-content>
+  <h2 mat-dialog-title class="text-center">Reservation failure</h2>
+  <mat-dialog-content>
+    <p class="alert-danger">{{data.err.name }} {{ data.err.statusText}}</p>
+  </mat-dialog-content>
   <mat-dialog-actions class="justify-content-end">
     <button mat-button [mat-dialog-close]="true">close</button>
   </mat-dialog-actions>

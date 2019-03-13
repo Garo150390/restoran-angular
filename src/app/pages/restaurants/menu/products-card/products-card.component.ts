@@ -39,11 +39,10 @@ export class ProductsCardComponent implements OnInit {
 
   public open() {
     this.album[0] = { src: this.product.avatar };
-    this.lightbox.open(this.album, 0);
+    this.lightbox.open(this.album, 0, { fitImageInViewPort: true });
   }
 
   public addToStorage(product: ProductsModel): void {
-    console.log(product.id);
     if (StorageService.getData('product')) {
       StorageService.clearItem('product');
     }

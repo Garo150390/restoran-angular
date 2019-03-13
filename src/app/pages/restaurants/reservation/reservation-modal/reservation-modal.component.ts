@@ -83,10 +83,9 @@ export class ReservationModalComponent implements OnInit {
         ...orderedData,
         ...req,
       };
-      console.log(ReservationService.request);
       this.reservationService.bookingTable(ReservationService.request)
         .subscribe((data) => {
-          this.dialogRef.close('sax lav e');
+          this.dialogRef.close('success');
           this.dialog.open(InfoModalComponent, {
             width: '550px',
             data: {success: true, data}
@@ -95,13 +94,15 @@ export class ReservationModalComponent implements OnInit {
         }, (err: HttpErrorResponse) => {
           console.log(err);
           const error = err.error.errors;
-          for (const key in error) {
-            if (error.hasOwnProperty(key) && this[key]) {
-              this[key].setErrors({'incorrect': error[key][0] || error[key]});
-              console.log(this[key]);
-            }
-          }
+          const validationError = ValidateService.markAsIncorrect(error, this);
           this.spinner = false;
+          if (!validationError) {
+            this.dialogRef.close('error');
+            this.dialog.open(InfoModalComponent, {
+              width: '550px',
+              data: { err }
+            });
+          }
         });
     }
   }

@@ -18,13 +18,21 @@
       </li>
     </ul>
 
-    <div class="filters-content">
+    <div *ngIf="products, else spinner" class="filters-content">
       <div class="row grid">
         <div class="col-md-3 p-2" *ngFor="let product of productList"
-             [@fadeInOut]="'show'">
+             [@fadeInOut]>
           <app-products-card [product]="product"></app-products-card>
         </div>
       </div>
     </div>
+
+    <ng-template #spinner>
+      <div class="mt-5 pt-5 d-flex justify-content-center">
+        <mat-progress-spinner
+          [mode]="'indeterminate'" [diameter]="40">
+        </mat-progress-spinner>
+      </div>
+    </ng-template>
   </div>
 </section>

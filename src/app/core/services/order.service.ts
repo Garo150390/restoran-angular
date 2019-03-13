@@ -9,8 +9,6 @@ export class OrderService implements DoCheck {
 
   static orders: Array<OrderProductsModel> = [];
 
-  public shmbl: any = [];
-
   private ordersSubject = new ReplaySubject<number>(1);
   public ordersCount = this.ordersSubject.asObservable();
 
@@ -20,23 +18,25 @@ export class OrderService implements DoCheck {
     }
   }
 
-  public addToOrders(product: OrderProductsModel) {
+  public addToOrders(product: OrderProductsModel): number {
     let exist = false;
-    OrderService.orders.forEach((prod) => {
+    let index: number;
+    OrderService.orders.forEach((prod, i) => {
       if (prod.id === product.id) {
         exist = true;
+        index = i;
       }
     });
     if (!exist) {
       OrderService.orders.push(product);
       this.ordersSubject.next(OrderService.orders.length);
       StorageService.saveItem('orders', JSON.stringify(OrderService.orders));
-      // JSON.parse(StorageService.getData(product.id.toString()));
+      index = OrderService.orders.length - 1;
     }
+    return index;
   }
 
   ngDoCheck(): void {
-    console.log('poxvav');
     this.ordersSubject.next(OrderService.orders.length);
   }
 
@@ -45,7 +45,6 @@ export class OrderService implements DoCheck {
     if (!OrderService.orders.length) {
       return this.ordersSubject.next(0);
     }
-    console.log(OrderService.orders.length);
     this.ordersSubject.next(OrderService.orders.length);
   }
 }

@@ -2,17 +2,15 @@ import { Lightbox } from '@ngx-gallery/lightbox';
 import { ActivatedRoute } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import { Component, ElementRef, OnInit } from '@angular/core';
-import {Gallery, GalleryItem, GalleryRef, ThumbnailsPosition} from '@ngx-gallery/core';
+import { Gallery, GalleryItem, GalleryRef, ThumbnailsPosition } from '@ngx-gallery/core';
 
 import { GalleryService } from '../../../core/services/gallery.service';
 import { ImageModel } from '../../../core/models';
 
-declare const $: any;
-
 @Component({
   selector: 'app-photo-gallery',
   templateUrl: './photo-gallery.component.html',
-  styleUrls: ['./photo-gallery.component.scss', ],
+  styleUrls: ['./photo-gallery.component.scss',],
 })
 export class PhotoGalleryComponent implements OnInit {
 
@@ -35,12 +33,13 @@ export class PhotoGalleryComponent implements OnInit {
   public p: number;
   public total: number;
   public lightboxGalleryRef: GalleryRef;
+  public itemsPerPage = GalleryService.limit;
 
   public galleryId = 'myLightbox';
 
   ngOnInit() {
     this.photos = this.route.snapshot.data.photos.data;
-    this.total = this.route.snapshot.data.photos.total;
+    this.total = this.route.snapshot.data.photos.total || 15;
     this.galleryItems = this.galleryService.getGalleryItem(this.photos);
     this.gallery.ref().load(this.galleryItems);
     this.lightboxGalleryRef = this.gallery.ref(this.galleryId);
@@ -69,24 +68,13 @@ export class PhotoGalleryComponent implements OnInit {
 
 
   public changePage(page: number): void {
-    if (page === 1) {
-      this.galleryService.getPhotos(page)
-        .subscribe((data) => {
-          this.photos = data.data;
-          this.p = page;
-          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
-        }, (error) => {
-          console.log(error);
-        });
-    } else {
-      this.galleryService.getPhotos2(page)
-        .subscribe((data) => {
-          this.photos = data.data;
-          this.p = page;
-          this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
-        }, (error) => {
-          console.log(error);
-        });
-    }
+    this.galleryService.getPhotos(page - 1)
+      .subscribe((data) => {
+        this.photos = data.data;
+        this.p = page;
+        this.lightboxGalleryRef.load(this.galleryService.getGalleryItem(data.data));
+      }, (error) => {
+        console.log(error);
+      });
   }
 }

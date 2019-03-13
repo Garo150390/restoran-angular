@@ -18,6 +18,6 @@ export class ReservationService {
   }
 
   public bookingTable(query): Observable<any> {
-    return this.http.post<any>(`${environment.jsonDB}/tables/reservation.json`, query);
+    return this.http.post<any>(`${environment.apiEndPoint}/order`, query);
   }
 }

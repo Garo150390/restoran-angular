@@ -3,9 +3,9 @@
   <div class="form-group">
     <mat-form-field>
       <mat-select [formControl]="guestsCount"
-                  [placeholder]="'reservation.form.guest_count' | translate">
+                  [placeholder]="'form.placeholder.guest_count' | translate">
         <mat-option *ngFor="let count of guests"
-                    [value]="count.value">{{count.name }} {{ 'reservation.form.for' | translate}}
+                    [value]="count.value">{{count.name }} {{ 'form.for' | translate}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-row mx-1">
       <div class="mr-5">
-        <label for="startTime">{{ 'reservation.form.start_time' | translate }}</label>
+        <label for="startTime">{{ 'form.placeholder.start_time' | translate }}</label>
         <ngb-timepicker [(ngModel)]="startTime" id="startTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
@@ -41,7 +41,7 @@
         </ngb-timepicker>
       </div>
       <div class="">
-        <label for="endTime">{{ 'reservation.form.end_time' | translate }}</label>
+        <label for="endTime">{{ 'form.placeholder.end_time' | translate }}</label>
         <ngb-timepicker [(ngModel)]="endTime" id="endTime"
                         size="small" [hourStep]="1" [minuteStep]="15"
                         [ngModelOptions]="{standalone: true}">
@@ -63,6 +63,6 @@
   <div><p class="alert-danger">{{errorMessage}}</p></div>
 
   <button type="submit" mat-raised-button color="accent" class="btn btn-danger mt-5">
-    {{ 'reservation.make_reservation' | translate}}
+    {{ 'form.btn.make_reservation' | translate}}
   </button>
 </form>

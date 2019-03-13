@@ -1,7 +1,7 @@
 {
   "header": {
-    "home": "Տուն",
-    "about": "մեր մասին",
+    "home": "Գլխավոր",
+    "about": "Մեր մասին",
     "contact": "Կապ",
     "blog": "Օրագիր",
     "gallery": "Պատկերասրահ",
@@ -16,9 +16,21 @@
   "home": {
     "title": "Ռեստորաններ"
   },
+  "menu": {
+    "title": "Ինչ մթերքներ ենք առաջարկում նրանց",
+    "desc": "Ովքեր սիրում էն էկոլոգիապես մաքուր սնունդ"
+  },
+  "reservation": {
+    "title": "Ամրագրեք ձեր տեղերը, եթե այցելելու եք ընտանիքով",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
+  },
   "not_found": {
     "text": "Վա՜յ, էջը, որը փնտրում եք, հնարավոր չէ գտնել",
     "text2": "Վերադարնալ գլխավոր էջ"
+  },
+  "products": {
+    "view_btn": "Դիտել ավելին",
+    "valuate": "Դրամ"
   },
   "order" : {
     "not_order": "Պատվերներ չկան",
@@ -28,34 +40,45 @@
     "price": "գին",
     "total": "Ընդհանուր",
     "total_price": "Ընդհանուր գին",
-    "btn": "պատվիրել"
-  },
-  "products": {
-    "view_btn": "Դիտել ավելին",
-    "valuate": "Դրամ"
-  },
-  "menu": {
-    "title": "Ինչ մթերքներ ենք առաջարկում նրանց",
-    "desc": "Ովքեր սիրում էն էկոլոգիապես մաքուր սնունդ"
-  },
-  "reservation": {
-    "title": "Ամրագրեք ձեր տեղերը, եթե այցելելու էք ընտանիքով",
-    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-    "reservation": "Ամրագրել",
-    "make_reservation": "Ամրագրել",
-    "form": {
-      "start_time": "Սկիզբ",
-      "end_time": "Ավարտ",
-      "for": "հոգի",
-      "guest_count": "Այցելուների քանակը"
-    }
+    "btn": "Պատվիրել"
   },
   "form": {
     "required_name": "Անունը պարտադիր է",
+    "valid_name": "Մուտքագրեք վավեր անուն",
     "required_surname": "Ազգանունը պարտադիր է",
-    "required_email": "էլ․ հասցեն  պարտադիր է",
-    "required_phone": "հեռախոսը պարտադիր է",
+    "valid_surname": "Մուտքագրեք վավեր ազգանուն",
+    "required_email": "Էլ․ հասցեն  պարտադիր է",
+    "valid_email": "Մուտքագրեք վավեր էլ․ հասցեն",
+    "required_phone": "Հեռախոսը պարտադիր է",
+    "valid_phone": "Համարը պետք է լինի 0XX-XX-XX-XX կամ (374)-0XX-XX-XX-XX",
+    "required_address": "Հասցեն  պարտադիր է",
+    "valid_address": "Մուտքագրեք վավեր հասցեն",
     "required_date": "ամսաթիվը պարտադիր է",
-    "valid_date": "Խնդրում ենք մուտքագրել ճիշտ ամսաթիվ"
+    "valid_date": "Մուտքագրել վավեր ամսաթիվ",
+    "order": "Պատվեր",
+    "credit_card": "Բանկաային քարտ",
+    "mobidram": "ՄոբիԴրամ",
+    "idram": "Իդրամ",
+    "for": "հոգի",
+    "placeholder": {
+      "textarea": "Ավելացնել հատուկ պահանջ",
+      "quantity": "Քանակ",
+      "name": "Անուն",
+      "surname": "Ազգանուն",
+      "phone": "Հեռախոս",
+      "email": "Էլ․ հասցեն",
+      "select_event": "Ընտրեք առիթը",
+      "address": "Հասցե",
+      "payment": "Քարտով վճարում",
+      "start_time": "Սկիզբ",
+      "end_time": "Ավարտ",
+      "guest_count": "Այցելուների քանակը"
+    },
+    "btn": {
+      "send": "Ուղղարկել",
+      "close": "Փակել",
+      "reservation": "Ամրագրել",
+      "make_reservation": "Ամրագրել"
+    }
   }
 }

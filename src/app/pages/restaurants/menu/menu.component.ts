@@ -65,7 +65,6 @@ export class MenuComponent implements OnChanges, AfterViewInit {
       return this.productList = this.products.filter(product => product.parent_id !== 0);
     }
     this.productList = this.products.filter((product) => {
-      console.log(elem.dataset.filter, product.parent_id);
       return product.parent_id === parseInt(elem.dataset.filter, 10);
     });
   }

@@ -5,8 +5,13 @@
       <img class="col-12" [src]="product?.avatar" alt="product">
     </div>
     <div class="col">
-      <h3>{{product?.name_en}}</h3>
-      <p>{{product?.description_en}}</p>
+      <div>
+        <h3>{{product?.name_en}}</h3>
+        <p>{{product?.description_en}}</p>
+      </div>
+      <div class="mt-5">
+        <app-product-form [product]="product"></app-product-form>
+      </div>
     </div>
   </div>
 </div>

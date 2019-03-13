@@ -79,7 +79,6 @@ export class MakeReservationFormComponent implements OnInit {
       guests_number: guestsCount,
       restaurant_id: this.route.snapshot.params.id,
     };
-    console.log(ReservationService.request);
     this.reservationService.checkFreeTable(ReservationService.request)
       .subscribe((data) => {
         if (!data.data.length) {

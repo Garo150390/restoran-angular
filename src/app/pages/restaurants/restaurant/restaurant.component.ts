@@ -28,6 +28,7 @@ export class RestaurantComponent implements OnInit {
       }, (err) => {
         console.log(err);
       });
+
   }
 
 }

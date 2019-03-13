@@ -16,9 +16,21 @@
   "home": {
     "title": "Рестораны"
   },
+  "menu": {
+    "title": "Какие продукты мы предлагаем вам",
+    "desc": "Кто очень любит экологически чистую систему"
+  },
+  "reservation": {
+    "title": "Зарезервируйте свои места, чтобы подтвердить, если вы приедете со своей семьей",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
+  },
   "not_found": {
-    "text": "К сожалению, страница, которую вы ищете, не может быть найдена!",
+    "text": "К сожалению, страница, которую вы ищете, не найдена!",
     "text2": "Вернуться на главную страницу"
+  },
+  "products": {
+    "view_btn": "Посмотреть больше",
+    "valuate": "Драм"
   },
   "order" : {
     "not_order": "Список заказов пуст",
@@ -30,32 +42,43 @@
     "total_price": "ИТОГОВАЯ ЦЕНА",
     "btn": "заказать продукты"
   },
-  "products": {
-    "view_btn": "Посмотреть больше",
-    "valuate": "Драм"
-  },
-  "menu": {
-    "title": "Какие продукты мы предлагаем вам",
-    "desc": "Кто очень любит экологически чистую систему"
-  },
-  "reservation": {
-    "title": "Зарезервируйте свои места, чтобы подтвердить, если вы приедете со своей семьей",
-    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-    "reservation": "Бронирование",
-    "make_reservation": "Забронировать",
-    "form": {
-      "start_time": "Начало",
-      "end_time": "Конец",
-      "for": "человек",
-      "guest_count": "Количество гостей"
-    }
-  },
   "form": {
     "required_name": "Имя обязательно",
+    "valid_name": "Введите действительное имя",
     "required_surname": "Фамилия обязательна",
-    "required_email": "Электронная почта обезательно",
+    "valid_surname": "Введите действительную фамилию",
+    "required_email": "Эл. почта обезательно",
+    "valid_email": "Введите правильный адрес эл. почты",
     "required_phone": "Телефон обязательно",
+    "valid_phone": "Номер телефона должен быть 0XX-XX-XX-XX или (374)-0XX-XX-XX-XX",
+    "required_address": "Адрес обязательна",
+    "valid_address": "Введите правильный адрес",
     "required_date": "Дата обязательна",
-    "valid_date": "Пожалуйста, введите правильную дату"
+    "valid_date": "Введите правильную дату",
+    "order": "Заказ",
+    "credit_card": "Кредитная карта",
+    "mobidram": "Мобидрам",
+    "idram": "Идрам",
+    "for": "человек",
+    "placeholder": {
+      "textarea": "Добавить специальный запрос",
+      "quantity": "Количество",
+      "name": "Имя",
+      "surname": "Фамилия",
+      "phone": "Телефон",
+      "email": "Эл. почта",
+      "select_event": "Выберите событие",
+      "address": "Адрес",
+      "payment": "Оплата картой",
+      "start_time": "Начало",
+      "end_time": "Конец",
+      "guest_count": "Количество гостей"
+    },
+    "btn": {
+      "send": "Отправить",
+      "close": "Закрыть",
+      "reservation": "Забронировать",
+      "make_reservation": "Бронирование"
+    }
   }
 }

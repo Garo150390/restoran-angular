@@ -12,7 +12,7 @@
   <div class="col-lg-12 mx-auto mt-5">
     <div class="gallery" id="gallery">
       <div class="mb-3 pics animation"
-           *ngFor="let image of photos | paginate: { itemsPerPage: 9, currentPage: p, totalItems: total }; let i = index">
+           *ngFor="let image of photos | paginate: { itemsPerPage: itemsPerPage, currentPage: p, totalItems: total }; let i = index">
         <app-photo [image]="image"
                    [lightbox]="i"
                    [gallery]="galleryId">

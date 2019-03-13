@@ -1,7 +1,7 @@
 @import "~src/assets/scss/core/variables";
 
 .banner-area {
-  background: url('../../../assets/images/hero-bg.jpg') no-repeat fixed center/cover;
+  background: url('../../../assets/images/hero-bg.webp') no-repeat fixed center/cover;
   background-size: cover;
   height: 100%;
   @media(max-width: 767px) {

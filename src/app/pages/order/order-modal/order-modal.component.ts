@@ -88,11 +88,9 @@ export class OrderModalComponent implements OnInit {
         return x + y;
       });
       const order = {...this.orderForms.getRawValue(), products, total: delivery_total_price};
-      console.log(order);
       this.orderRequestService.createOrder(order)
         .subscribe((data) => {
           this.spinner = false;
-          console.log(data);
           this.dialogRef.close('success');
           this.dialog.open(InfoModalComponent, {
             width: '550px',
@@ -102,10 +100,11 @@ export class OrderModalComponent implements OnInit {
           OrderService.orders = [];
         }, (err: HttpErrorResponse) => {
           const error = err.error.errors;
+          console.log(err);
           const validationError = ValidateService.markAsIncorrect(error, this);
           this.spinner = false;
-          this.dialogRef.close('error');
           if (!validationError) {
+            this.dialogRef.close('error');
             this.dialog.open(InfoModalComponent, {
               width: '550px',
               data: { err }

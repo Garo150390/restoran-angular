@@ -16,9 +16,21 @@
   "home": {
     "title": "Restaurants"
   },
+  "menu": {
+    "title": "What kind of Foods we serve for you",
+    "desc": "Who are in extremely love with eco friendly system"
+  },
+  "reservation": {
+    "title": "Reserve Your Seats to Confirm if You Come with Your Family",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
+  },
   "not_found": {
     "text": "Oops, The Page you are looking for can't be found!",
     "text2": "Return To Homepage"
+  },
+  "products": {
+    "view_btn": "View more",
+    "valuate": "AM"
   },
   "order" : {
     "not_order": "Order list is empty",
@@ -30,32 +42,43 @@
     "total_price": "TOTAL PRICE",
     "btn": "order products"
   },
-  "products": {
-    "view_btn": "View more",
-    "valuate": "AM"
-  },
-  "menu": {
-    "title": "What kind of Foods we serve for you",
-    "desc": "Who are in extremely love with eco friendly system"
-  },
-  "reservation": {
-    "title": "Reserve Your Seats to Confirm if You Come with Your Family",
-    "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.",
-    "reservation": "Reservation",
-    "make_reservation": "MAKE RESERVATION",
-    "form": {
-      "start_time": "Start time",
-      "end_time": "End time",
-      "for": "person",
-      "guest_count": "Guest count"
-    }
-  },
   "form": {
     "required_name": "Name is required",
+    "valid_name": "Enter a valid name",
     "required_surname": "Surname is required",
+    "valid_surname": "Enter a valid surname",
     "required_email": "Email is required",
+    "valid_email": "Enter a correct email",
     "required_phone": "Phone is required",
+    "valid_phone": "Phone number must be 0XX-XX-XX-XX or (374)-0XX-XX-XX-XX",
+    "required_address": "Address is required",
+    "valid_address": "Enter a valid address",
     "required_date": "Date is required",
-    "valid_date": "Please enter correct date"
+    "valid_date": "Enter correct date",
+    "order": "Order",
+    "credit_card": "Credit Card",
+    "mobidram": "Mobidram",
+    "idram": "Idram",
+    "for": "person",
+    "placeholder": {
+      "textarea": "Add a special request",
+      "quantity": "Quantity",
+      "name": "Name",
+      "surname": "Surname",
+      "phone": "Phone",
+      "email": "Email",
+      "select_event": "Select Event",
+      "address": "Address",
+      "payment": "Card payment",
+      "start_time": "Start time",
+      "end_time": "End time",
+      "guest_count": "Guest count"
+    },
+    "btn": {
+      "reservation": "Reservation",
+      "make_reservation": "MAKE RESERVATION",
+      "send": "Send",
+      "close": "Close"
+    }
   }
 }

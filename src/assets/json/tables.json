@@ -1,12 +1,3 @@
 {
-  "data": [
-    {
-      "startTime": "11:11",
-      "endTime": "12:00"
-    },
-    {
-      "startTime": "13:30",
-      "endTime": "14:40"
-    }
-  ]
+  "data": []
 }

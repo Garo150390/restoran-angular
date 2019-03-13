@@ -1,29 +1,29 @@
 <mat-dialog-content>
-  <h5 mat-dialog-title >Order</h5>
+  <h5 mat-dialog-title class="text-center">{{ 'form.order' | translate}}</h5>
   <div>
     <form [formGroup]="orderForms"
           (ngSubmit)="sendOrderForms()">
       <div class="form-group px-3">
         <div class="form-row">
           <mat-form-field class="col">
-            <input matInput placeholder="Name" [formControl]="name">
+            <input matInput [placeholder]="'form.placeholder.name' | translate" [formControl]="name">
             <mat-error *ngIf="name.hasError('pattern') && name.dirty">
-              Please enter a valid name
+              {{'form.valid_name' | translate}}
             </mat-error>
             <mat-error *ngIf="name.hasError('required')">
-              Name is <strong>required</strong>
+              {{ 'form.required_name' | translate }}
             </mat-error>
             <mat-error *ngIf="name.hasError('incorrect')">
               {{name.errors['incorrect']}}
             </mat-error>
           </mat-form-field>
           <mat-form-field class="col">
-            <input matInput placeholder="Phone" [formControl]="phone">
+            <input matInput [placeholder]="'form.placeholder.phone' | translate" [formControl]="phone">
             <mat-error *ngIf="phone.hasError('pattern') && phone.dirty">
-              Please enter a valid phone
+              {{'form.valid_phone' | translate}}
             </mat-error>
             <mat-error *ngIf="phone.hasError('required')">
-              Phone is <strong>required</strong>
+              {{ 'form.required_phone' | translate }}
             </mat-error>
             <mat-error *ngIf="phone.hasError('incorrect')">
               {{phone.errors['incorrect']}}
@@ -33,12 +33,12 @@
       </div>
       <div class="form-group">
         <mat-form-field class="col">
-          <input matInput placeholder="Address" [formControl]="address">
+          <input matInput [placeholder]="'form.placeholder.address' | translate" [formControl]="address">
           <mat-error *ngIf="address.hasError('pattern') && address.dirty">
-            Please enter a valid address
+            {{ 'form.valid_address' | translate }}
           </mat-error>
           <mat-error *ngIf="address.hasError('required')">
-            Address is <strong>required</strong>
+            {{ 'form.required_address' | translate }}
           </mat-error>
           <mat-error *ngIf="address.hasError('incorrect')">
             {{address.errors['incorrect']}}
@@ -50,28 +50,28 @@
           <input #payment class="form-check-input" (click)="checked(payment.checked)"
                  type="checkbox" id="gridCheck">
           <label class="form-check-label" for="gridCheck">
-            Card payment
+            {{'form.placeholder.payment' | translate }}
           </label>
           <div *ngIf="pay">
             <ul class="nav mt-3 align-baseline">
               <li class="mx-3">
-                <div><img src="assets/images/elements/ameria.webp" height="52" alt=""></div>
-                <span>Credit Card</span>
+                <div><img src="assets/images/elements/ameria.webp" height="52" alt="Ameria"></div>
+                <span>{{'form.credit_card' | translate}}</span>
               </li>
               <li>
-                <div><img src="assets/images/elements/mobidram.webp" height="52" alt=""></div>
-                <span>Mobidram</span>
+                <div><img src="assets/images/elements/mobidram.webp" height="52" alt="Mobidram"></div>
+                <span>{{'form.mobidram' | translate}}</span>
               </li>
               <li class="mx-3">
-                <div><img src="assets/images/elements/idram.webp" height="52" alt=""></div>
-                <span>iDram</span>
+                <div><img src="assets/images/elements/idram.webp" height="52" alt="Idram"></div>
+                <span>{{'form.idram' | translate}}</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="row ml-3">
-        <button type="submit" mat-raised-button color="primary">Send</button>
+        <button type="submit" mat-raised-button color="primary">{{'form.btn.send' | translate}}</button>
         <div class="ml-5">
           <mat-progress-spinner *ngIf="spinner" [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
         </div>
@@ -80,5 +80,5 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions class="justify-content-end">
-  <button mat-button [mat-dialog-close]="true">close</button>
+  <button mat-button [mat-dialog-close]="true">{{'form.btn.close' | translate}}</button>
 </mat-dialog-actions>

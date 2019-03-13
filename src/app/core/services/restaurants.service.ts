@@ -19,7 +19,7 @@ export class RestaurantsService {
         map( restaurantData => restaurantData.data),
         map(restaurants => {
           restaurants.map(restaurant => {
-            restaurant.avatar = `${environment.imagePath}/restaurant_images/${restaurant.avatar}`;
+            restaurant.avatar = `${environment.imagePath}${restaurant.avatar}`;
             return restaurant;
           });
           return restaurants;
@@ -32,9 +32,9 @@ export class RestaurantsService {
       .pipe(
         map( restaurantData => restaurantData.data),
         map(restaurant => {
-          restaurant.avatar = `${environment.imagePath}/restaurant_images/${restaurant.avatar}`;
+          restaurant.avatar = `${environment.imagePath}${restaurant.avatar}`;
           restaurant.products.map(product => {
-            product.avatar = `${environment.imagePath}/products/${product.avatar}`;
+            product.avatar = `${environment.imagePath}${product.avatar}`;
             return product;
           });
           return restaurant;
