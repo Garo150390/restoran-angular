@@ -5,13 +5,15 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatDialogModule,
-  MatDialogRef, MatFormFieldModule,
+  MatDialogRef,
+  MatFormFieldModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
@@ -26,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatCheckboxModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatRadioModule,
     MatDialogModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,

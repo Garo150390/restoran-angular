@@ -11,6 +11,7 @@ import { RestaurantModel } from '../../core/models';
 export class HomeComponent implements OnInit {
 
   public restaurantsList: Array<RestaurantModel>;
+  public error = false;
 
   constructor(private restaurantsService: RestaurantsService) {
   }
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
       },
         (error) => {
           console.log(error);
+          this.error = error;
         }
       );
   }

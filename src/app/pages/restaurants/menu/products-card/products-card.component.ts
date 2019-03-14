@@ -29,7 +29,7 @@ export class ProductsCardComponent implements OnInit {
   public addToOrder(product: ProductsModel) {
     const prod: OrderProductsModel = {
       id: product.id,
-      title: product.name_en,
+      title: product.name,
       count: 1,
       price: parseInt(product.price, 10),
       img: product.avatar

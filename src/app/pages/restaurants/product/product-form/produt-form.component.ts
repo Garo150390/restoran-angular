@@ -35,7 +35,7 @@ export class ProdutFormComponent implements OnInit, OnDestroy {
     }
     const prod: OrderProductsModel = {
       id: this.product.id,
-      title: this.product.name_en,
+      title: this.product.name,
       count: 1,
       price: parseInt(this.product.price, 10),
       img: this.product.avatar

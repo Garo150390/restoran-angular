@@ -21,10 +21,14 @@
     </div>
   </div>
   <ng-template #spinner>
-    <div class="my-5 py-5 col-12 d-flex justify-content-center">
+    <div *ngIf="!error, else errorMessage" class="my-5 py-5 col-12 d-flex justify-content-center">
       <mat-progress-spinner
         [mode]="'indeterminate'" [diameter]="60">
       </mat-progress-spinner>
     </div>
+  </ng-template>
+
+  <ng-template #errorMessage>
+    <div class="h-25"></div>
   </ng-template>
 </div>

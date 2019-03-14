@@ -39,7 +39,7 @@ export class PhotoGalleryComponent implements OnInit {
 
   ngOnInit() {
     this.photos = this.route.snapshot.data.photos.data;
-    this.total = this.route.snapshot.data.photos.total || 15;
+    this.total = this.route.snapshot.data.photos.total;
     this.galleryItems = this.galleryService.getGalleryItem(this.photos);
     this.gallery.ref().load(this.galleryItems);
     this.lightboxGalleryRef = this.gallery.ref(this.galleryId);

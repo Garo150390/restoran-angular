@@ -5,7 +5,7 @@
       <th scope="colgroup">{{ 'order.image' | translate }}</th>
       <th scope="colgroup">{{ 'order.name' | translate}}</th>
       <th scope="colgroup">{{ 'order.count' | translate}}</th>
-      <th scope="colgroup">{{ 'order.price' | translate}}</th>
+      <th scope="colgroup">{{ 'order.total_price' | translate}}</th>
       <th scope="colgroup">{{ 'order.total' | translate}}</th>
     </tr>
     </thead>
@@ -30,8 +30,8 @@
     </tr>
     <tr>
       <td colspan="3"></td>
-      <td><p class="mb-0 text-danger">{{ 'order.total_price' | translate}}</p></td>
-      <td class="text-italic">{{price}}</td>
+      <td><p class="mb-0 text-danger">{{'order.total_price' | translate}}</p></td>
+      <td class="text-italic">{{total_price}}</td>
       <td></td>
     </tr>
     </tbody>

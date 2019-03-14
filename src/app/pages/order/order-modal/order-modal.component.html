@@ -1,5 +1,5 @@
 <mat-dialog-content>
-  <h5 mat-dialog-title class="text-center">{{ 'form.order' | translate}}</h5>
+  <h3 mat-dialog-title class="text-center">{{'form.order' | translate}}</h3>
   <div>
     <form [formGroup]="orderForms"
           (ngSubmit)="sendOrderForms()">
@@ -47,33 +47,74 @@
       </div>
       <div class="form-group">
         <div class="form-check">
-          <input #payment class="form-check-input" (click)="checked(payment.checked)"
-                 type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            {{'form.placeholder.payment' | translate }}
-          </label>
-          <div *ngIf="pay">
-            <ul class="nav mt-3 align-baseline">
-              <li class="mx-3">
-                <div><img src="assets/images/elements/ameria.webp" height="52" alt="Ameria"></div>
-                <span>{{'form.credit_card' | translate}}</span>
-              </li>
-              <li>
-                <div><img src="assets/images/elements/mobidram.webp" height="52" alt="Mobidram"></div>
-                <span>{{'form.mobidram' | translate}}</span>
-              </li>
-              <li class="mx-3">
-                <div><img src="assets/images/elements/idram.webp" height="52" alt="Idram"></div>
-                <span>{{'form.idram' | translate}}</span>
-              </li>
-            </ul>
+          <mat-radio-group class="d-block" [formControl]="shipping">
+            <h5 class="font-italic">{{'form.shipping' | translate }} (300 {{ 'products.valuate' | translate}})</h5>
+            <mat-radio-button value="1" color="primary">yes</mat-radio-button>
+            <mat-radio-button class="ml-3" value="0"
+                              color="primary">no
+            </mat-radio-button>
+          </mat-radio-group>
+          <hr>
+          <mat-radio-group class="d-block" [formControl]="payment">
+            <h5 class="mb-3 font-italic">{{'form.payment' | translate }}</h5>
+            <mat-radio-button value="card">{{'form.payment_card' | translate }}</mat-radio-button>
+            <mat-radio-button color="primary" value="cash" class="ml-5">
+              {{ +shipping.value
+              ? ('form.payment_cash' | translate)
+              : ('form.payment_cash_' | translate)}}
+            </mat-radio-button>
+            <div *ngIf="payment.value === 'card'">
+              <ul class="nav mt-3 align-baseline">
+                <li class="mx-3">
+                  <div><img src="assets/images/elements/ameria.webp" height="52" alt="Ameria"></div>
+                  <span class="font-10">{{ 'form.credit_card' | translate }}</span>
+                </li>
+                <li>
+                  <div><img src="assets/images/elements/mobidram.webp" height="52" alt="Mobidram"></div>
+                  <span class="font-10">{{'form.mobidram' | translate}}</span>
+                </li>
+                <li class="mx-3">
+                  <div><img src="assets/images/elements/idram.webp" height="52" alt="Idram"></div>
+                  <span class="font-10">{{'form.idram' | translate}}</span>
+                </li>
+              </ul>
+            </div>
+          </mat-radio-group>
+          <hr>
+          <div>
+            <h5 class="font-italic">{{ 'form.order_price' | translate}}</h5>
+            <table class="table table-borderless p-0">
+              <tbody>
+              <tr class="text-secondary">
+                <td>{{'order.total_price' | translate }}</td>
+                <td> {{data.price}} <span class="text-danger">{{ 'products.valuate' | translate}}</span></td>
+              </tr>
+              <tr *ngIf="+shipping.value" class="shipping text-secondary">
+                <td>{{ 'form.shipping' | translate }}</td>
+                <td>300 <span class="text-danger">{{ 'products.valuate' | translate}}</span></td>
+              </tr>
+              <hr>
+              <tr>
+                <th>{{'order.total_price' | translate }}</th>
+                <th>{{ +shipping.value ? data.price + 300 : data.price }}
+                  <span class="text-danger">{{'products.valuate' | translate}}
+                  </span>
+                </th>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-      <div class="row ml-3">
-        <button type="submit" mat-raised-button color="primary">{{'form.btn.send' | translate}}</button>
+      <div class="row ml-3 mt-5">
+        <button type="submit" mat-raised-button color="primary">
+          {{'form.btn.send' | translate}}
+        </button>
         <div class="ml-5">
-          <mat-progress-spinner *ngIf="spinner" [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
+          <mat-progress-spinner
+            *ngIf="spinner"
+            [mode]="'indeterminate'" [diameter]="30">
+          </mat-progress-spinner>
         </div>
       </div>
     </form>

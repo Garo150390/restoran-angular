@@ -34,13 +34,13 @@
   },
   "order" : {
     "not_order": "Order list is empty",
-    "image": "image",
-    "name": "name",
-    "count": "count",
-    "price": "price",
-    "total": "total",
+    "image": "Image",
+    "name": "Name",
+    "count": "Count",
+    "price": "Price",
+    "total": "Total",
     "total_price": "TOTAL PRICE",
-    "btn": "order products"
+    "btn": "Order products"
   },
   "form": {
     "required_name": "Name is required",
@@ -60,6 +60,12 @@
     "mobidram": "Mobidram",
     "idram": "Idram",
     "for": "person",
+    "payment": "Payment method",
+    "payment_card": "Pay Online",
+    "payment_cash": "Cash On Delivery",
+    "payment_cash_": "Pay on the spot",
+    "shipping": "Shipping",
+    "order_price": "Order price",
     "placeholder": {
       "textarea": "Add a special request",
       "quantity": "Quantity",
@@ -69,7 +75,6 @@
       "email": "Email",
       "select_event": "Select Event",
       "address": "Address",
-      "payment": "Card payment",
       "start_time": "Start time",
       "end_time": "End time",
       "guest_count": "Guest count"

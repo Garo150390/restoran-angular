@@ -31,8 +31,9 @@ export class OrderModalComponent implements OnInit {
   public name: FormControl;
   public phone: FormControl;
   public address: FormControl;
+  public shipping: FormControl;
+  public payment: FormControl;
   public spinner = false;
-  public pay: boolean;
 
   constructor(public dialog: MatDialog,
               public dialogRef: MatDialogRef<OrderModalComponent>,
@@ -55,7 +56,9 @@ export class OrderModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.phoneRegex)
     ]);
-    this.address = new FormControl('', []);
+    this.address = new FormControl('' );
+    this.shipping = new FormControl('1');
+    this.payment = new FormControl('card');
   }
 
   private createForm(): void {
@@ -63,16 +66,14 @@ export class OrderModalComponent implements OnInit {
       'name': this.name,
       'phone': this.phone,
       'address': this.address,
+      'is_delivery': this.shipping,
+      'payment_type': this.payment
     });
-  }
-
-  public checked(data: boolean) {
-    this.pay = data;
   }
 
   public sendOrderForms() {
     this.spinner = true;
-    if (this.orderForms.invalid) {
+    if (!this.orderForms.invalid) {
       ValidateService.validateAllFormFields(this.orderForms);
       this.spinner = false;
     } else {
@@ -87,7 +88,12 @@ export class OrderModalComponent implements OnInit {
       }).reduce((x, y) => {
         return x + y;
       });
-      const order = {...this.orderForms.getRawValue(), products, total: delivery_total_price};
+      const order = {
+        ...this.orderForms.getRawValue(),
+        products,
+        total: delivery_total_price,
+        delivery_price: 300
+      };
       this.orderRequestService.createOrder(order)
         .subscribe((data) => {
           this.spinner = false;
@@ -100,7 +106,6 @@ export class OrderModalComponent implements OnInit {
           OrderService.orders = [];
         }, (err: HttpErrorResponse) => {
           const error = err.error.errors;
-          console.log(err);
           const validationError = ValidateService.markAsIncorrect(error, this);
           this.spinner = false;
           if (!validationError) {

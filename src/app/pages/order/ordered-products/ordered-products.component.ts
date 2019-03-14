@@ -19,7 +19,7 @@ export class OrderedProductsComponent implements OnInit, DoCheck {
 
   public products: Array<OrderProductsModel> = OrderService.orders;
 
-  public price: number;
+  public total_price: number;
 
   constructor(private orderService: OrderService,
               public dialog: MatDialog) { }
@@ -32,8 +32,11 @@ export class OrderedProductsComponent implements OnInit, DoCheck {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(OrderModalComponent, {
-      width: '500px',
-      data: {}
+      width: '600px',
+      position: {
+        top: '1px',
+      },
+      data: { price: this.total_price }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -48,20 +51,20 @@ export class OrderedProductsComponent implements OnInit, DoCheck {
     const price = this.products.map((x) => {
       return x.price * x.count;
     });
-    this.price = price.reduce((x, y) => {
+    this.total_price = price.reduce((x, y) => {
       return x + y;
     });
   }
 
   public addCount(index) {
     this.products[index].count += 1;
-    this.price += this.products[index].price;
+    this.total_price += this.products[index].price;
   }
 
   public reduceCount(index) {
     if (this.products[index].count > 1) {
       this.products[index].count -= 1;
-      this.price -= this.products[index].price;
+      this.total_price -= this.products[index].price;
     }
   }
 

@@ -19,7 +19,7 @@ export class GalleryService {
   public getPhotos(page): Observable<GalleryModel> {
     const offset = page !== 1 ? (page - 1) * GalleryService.limit : 0;
     const params = new HttpParams().set('offset', `${offset}`).set('limit', `${GalleryService.limit}`);
-    return this.http.get<GalleryModel>(`${environment.apiEndPoint}/restaurant_image`, { params })
+    return this.http.get<GalleryModel>(`${environment.apiEndPoint}/restaurant/1/images`, { params })
       .pipe(
           map(gallery => {
             gallery.data.map((item) => {

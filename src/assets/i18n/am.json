@@ -34,12 +34,12 @@
   },
   "order" : {
     "not_order": "Պատվերներ չկան",
-    "image": "նկար",
-    "name": "անուն",
-    "count": "քանակ",
-    "price": "գին",
+    "image": "Նկար",
+    "name": "Անուն",
+    "count": "Քանակ",
+    "price": "Գումար",
     "total": "Ընդհանուր",
-    "total_price": "Ընդհանուր գին",
+    "total_price": "ԸՆԴՀԱՆՈՒՐ ԳԻՆ",
     "btn": "Պատվիրել"
   },
   "form": {
@@ -60,6 +60,12 @@
     "mobidram": "ՄոբիԴրամ",
     "idram": "Իդրամ",
     "for": "հոգի",
+    "payment": "Վճարման եղանակը",
+    "payment_card": "Քարտով",
+    "payment_cash": "Կանխիկ",
+    "payment_cash_": "Կանխիկ",
+    "shipping": "Առաքում",
+    "order_price": "Պատվերի գումարը",
     "placeholder": {
       "textarea": "Ավելացնել հատուկ պահանջ",
       "quantity": "Քանակ",
@@ -69,7 +75,6 @@
       "email": "Էլ․ հասցեն",
       "select_event": "Ընտրեք առիթը",
       "address": "Հասցե",
-      "payment": "Քարտով վճարում",
       "start_time": "Սկիզբ",
       "end_time": "Ավարտ",
       "guest_count": "Այցելուների քանակը"

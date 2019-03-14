@@ -5,8 +5,8 @@
          class="card-img-top pointer"
          (click)="open()">
     <div class="card-body">
-      <h3 class="card-title text-overflow pointer text-center text-danger" [title]="product?.name_en">{{product?.name_en}}</h3>
-      <p class="text-overflow text-secondary">{{product?.description_en}}</p>
+      <h3 class="card-title text-overflow pointer text-center text-danger" [title]="product?.name">{{product?.name}}</h3>
+      <p class="text-overflow text-secondary">{{product?.description}}</p>
       <div class="row offset-2 justify-content-around mt-5">
         <h3 class="price">{{product?.price}} {{'products.valuate' | translate}}</h3>
         <i class="icon-basket pointer"

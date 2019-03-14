@@ -64,14 +64,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     GallerizeModule,
   ],
   providers: [
-    /*{
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: LangInterceptor,
       multi: true
-    },*/
+    },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
-
-// platformBrowserDynamic().bootstrapModule(AppModule);
