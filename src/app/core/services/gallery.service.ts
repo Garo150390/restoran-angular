@@ -22,6 +22,7 @@ export class GalleryService {
     return this.http.get<GalleryModel>(`${environment.apiEndPoint}/restaurant/1/images`, { params })
       .pipe(
           map(gallery => {
+            console.log(gallery);
             gallery.data.map((item) => {
               item.name = `${environment.imagePath}${item.name}`;
               return item;

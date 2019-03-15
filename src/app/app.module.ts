@@ -64,11 +64,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     GallerizeModule,
   ],
   providers: [
-    {
+    /*{
       provide: HTTP_INTERCEPTORS,
       useClass: LangInterceptor,
       multi: true
-    },
+    },*/
   ],
   bootstrap: [AppComponent],
 })

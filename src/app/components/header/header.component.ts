@@ -1,9 +1,9 @@
-import { TranslateService } from '@ngx-translate/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { OrderService } from '../../core/services/order.service';
 import { StorageService } from '../../core/services/storage.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +20,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   private navItems: ElementRef;
 
   constructor(private orderService: OrderService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private router: Router) {
 
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
@@ -36,6 +37,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.count = data;
       });
+
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log(event.lang);
+    });
+
+    this.router.events.subscribe((data) => {
+        console.log(data);
+    });
   }
 
   ngAfterViewInit(): void {

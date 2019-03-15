@@ -5,16 +5,16 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import {HttpErrorResponse} from '@angular/common/http';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 
-import { OrderRequestService } from '../../../core/services/order-request.service';
-import { ValidateService } from '../../../core/services/validate.service';
-import { ValidatorHelper } from '../../../core/helpers/validator.helper';
-import { StorageService } from '../../../core/services/storage.service';
-import { InfoModalComponent } from './info-modal/info-modal.component';
-import { OrderService } from '../../../core/services/order.service';
+import {OrderRequestService} from '../../../core/services/order-request.service';
+import {ValidateService} from '../../../core/services/validate.service';
+import {ValidatorHelper} from '../../../core/helpers/validator.helper';
+import {StorageService} from '../../../core/services/storage.service';
+import {InfoModalComponent} from './info-modal/info-modal.component';
+import {OrderService} from '../../../core/services/order.service';
 
 
 @Component({
@@ -56,7 +56,7 @@ export class OrderModalComponent implements OnInit {
       Validators.required,
       Validators.pattern(ValidatorHelper.phoneRegex)
     ]);
-    this.address = new FormControl('' );
+    this.address = new FormControl('');
     this.shipping = new FormControl('1');
     this.payment = new FormControl('card');
   }
@@ -73,50 +73,50 @@ export class OrderModalComponent implements OnInit {
 
   public sendOrderForms() {
     this.spinner = true;
-    if (!this.orderForms.invalid) {
+    if (this.orderForms.invalid) {
       ValidateService.validateAllFormFields(this.orderForms);
-      this.spinner = false;
-    } else {
-      const ordersData = OrderService.orders;
-      const products = ordersData.map((prod) => {
-        const {id: menu_id, count, price} = prod;
-        const total = price * count;
-        return {menu_id, total, count};
-      });
-      const delivery_total_price = products.map((prod) => {
-        return prod.total;
-      }).reduce((x, y) => {
-        return x + y;
-      });
-      const order = {
-        ...this.orderForms.getRawValue(),
-        products,
-        total: delivery_total_price,
-        delivery_price: 300
-      };
-      this.orderRequestService.createOrder(order)
-        .subscribe((data) => {
-          this.spinner = false;
-          this.dialogRef.close('success');
+      return this.spinner = false;
+    }
+    const ordersData = OrderService.orders;
+    const products = ordersData.map((prod) => {
+      const {id: menu_id, count, price} = prod;
+      const total = price * count;
+      return {menu_id, total, count};
+    });
+    const delivery_total_price = products.map((prod) => {
+      return prod.total;
+    }).reduce((x, y) => {
+      return x + y;
+    });
+    const order = {
+      ...this.orderForms.getRawValue(),
+      products,
+      total: delivery_total_price,
+      delivery_price: 300
+    };
+    this.orderRequestService.createOrder(order)
+      .subscribe((data) => {
+        this.spinner = false;
+        this.dialogRef.close('success');
+        this.dialog.open(InfoModalComponent, {
+          width: '550px',
+          data: {success: true, data}
+        });
+        StorageService.clearItem('orders');
+        OrderService.orders = [];
+      }, (err: HttpErrorResponse) => {
+        console.log(err);
+        const error = err.error.errors;
+        const validationError = ValidateService.markAsIncorrect(error, this);
+        this.spinner = false;
+        if (!validationError) {
+          this.dialogRef.close('error');
           this.dialog.open(InfoModalComponent, {
             width: '550px',
-            data: { success: true, data }
+            data: {err}
           });
-          StorageService.clearItem('orders');
-          OrderService.orders = [];
-        }, (err: HttpErrorResponse) => {
-          const error = err.error.errors;
-          const validationError = ValidateService.markAsIncorrect(error, this);
-          this.spinner = false;
-          if (!validationError) {
-            this.dialogRef.close('error');
-            this.dialog.open(InfoModalComponent, {
-              width: '550px',
-              data: { err }
-            });
-          }
-        });
-    }
+        }
+      });
   }
 
 }

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: 'http://restaurant2.brainfors.am/api',
-  imagePath: 'http://restaurant2.brainfors.am',
+  apiEndPoint: 'http://restaurant.loc/api',
+  imagePath: 'http://restaurant.loc/',
   storageKey: 'restaurant-api: ',
   jsonDB: 'assets/json/'
 };

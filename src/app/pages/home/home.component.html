@@ -10,25 +10,27 @@
   </div>
 </section>
 
-<div class="justify-content-center">
-  <p class="text-center display-3">{{ 'home.title' | translate }}</p>
-</div>
-<div>
-  <div class="row col-lg-9 mx-auto mb-5"
-       *ngIf="restaurantsList, else spinner">
-    <div class="col-10 col-md-6 col-lg-4 p-0" *ngFor="let restaurant of restaurantsList">
-      <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
-    </div>
+<div [ngClass]="{'alert-danger': error}">
+  <div *ngIf="!error" class="justify-content-center">
+    <p class="text-center display-3">{{ 'home.title' | translate }}</p>
   </div>
-  <ng-template #spinner>
-    <div *ngIf="!error, else errorMessage" class="my-5 py-5 col-12 d-flex justify-content-center">
-      <mat-progress-spinner
-        [mode]="'indeterminate'" [diameter]="60">
-      </mat-progress-spinner>
+  <div>
+    <div class="row col-lg-9 mx-auto mb-5"
+         *ngIf="restaurantsList, else spinner">
+      <div class="col-10 col-md-6 col-lg-4 p-0" *ngFor="let restaurant of restaurantsList">
+        <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+      </div>
     </div>
-  </ng-template>
+    <ng-template #spinner>
+      <div *ngIf="!error, else errorMessage" class="my-5 py-5 col-12 d-flex justify-content-center">
+        <mat-progress-spinner
+          [mode]="'indeterminate'" [diameter]="60">
+        </mat-progress-spinner>
+      </div>
+    </ng-template>
 
-  <ng-template #errorMessage>
-    <div class="h-25"></div>
-  </ng-template>
+    <ng-template #errorMessage>
+      <div class="err-message display-4 text-center py-5">{{error.statusText}}</div>
+    </ng-template>
+  </div>
 </div>

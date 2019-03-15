@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RestaurantsService } from '../../core/services/restaurants.service';
 import { RestaurantModel } from '../../core/models';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { RestaurantModel } from '../../core/models';
 export class HomeComponent implements OnInit {
 
   public restaurantsList: Array<RestaurantModel>;
-  public error = false;
+  public error: HttpErrorResponse;
 
   constructor(private restaurantsService: RestaurantsService) {
   }
@@ -21,8 +22,7 @@ export class HomeComponent implements OnInit {
       .subscribe((data) => {
         this.restaurantsList = data;
       },
-        (error) => {
-          console.log(error);
+        (error: HttpErrorResponse) => {
           this.error = error;
         }
       );

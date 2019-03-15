@@ -1,9 +1,7 @@
 import { trigger, style, animate, transition } from '@angular/animations';
-import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 
-import { MenuService } from '../../../core/services/menu.service';
 import { ProductsModel } from '../../../core/models';
-import {StorageService} from '../../../core/services/storage.service';
 
 @Component({
   selector: 'app-menu',

@@ -7,7 +7,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { OrderComponent } from './pages/order/order.component';
 import { HomeComponent } from './pages/home/home.component';
 
-
 const routes: Routes = [
   {
     path: '',
