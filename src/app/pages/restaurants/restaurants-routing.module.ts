@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ProductComponent } from './product/product.component';
+import {LocalizeRouterModule} from 'localize-router';
 
 const routes: Routes = [
   {
@@ -16,7 +17,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [
+    LocalizeRouterModule.forChild(routes),
+    RouterModule.forChild(routes)
+  ],
+  exports: [RouterModule, LocalizeRouterModule]
 })
 export class RestaurantsRoutingModule { }

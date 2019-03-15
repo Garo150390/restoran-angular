@@ -1,9 +1,9 @@
+import {LocalizeRouterService} from 'localize-router';
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { OrderService } from '../../core/services/order.service';
 import { StorageService } from '../../core/services/storage.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(private orderService: OrderService,
               private translate: TranslateService,
-              private router: Router) {
+              private localize: LocalizeRouterService) {
 
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
@@ -42,9 +42,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       console.log(event.lang);
     });
 
-    this.router.events.subscribe((data) => {
+    /*this.router.events.subscribe((data) => {
         console.log(data);
-    });
+    });*/
   }
 
   ngAfterViewInit(): void {
@@ -62,6 +62,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     const lang = elem.dataset.lang;
     const childes = elem.parentElement.children;
     this.translate.use(lang);
+    this.localize.changeLanguage(lang);
     StorageService.saveItem('lang', lang);
     elem.classList.add('active');
     for (let i = 0; i < childes.length; i += 1 ) {
