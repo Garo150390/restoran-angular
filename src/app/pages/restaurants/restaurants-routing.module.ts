@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LocalizeRouterModule } from 'localize-router';
 
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ProductComponent } from './product/product.component';
-import {LocalizeRouterModule} from 'localize-router';
 
 const routes: Routes = [
   {

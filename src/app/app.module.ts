@@ -20,7 +20,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppComponent } from './components/app.component';
 import { MaterialModule } from './shared/material.module';
-import { BlogsModule } from './pages/blogs/blogs.module';
 import { OrderModule } from './pages/order/order.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -46,6 +45,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
+    SharedModule,
+    OrderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -54,9 +55,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     }),
     AppRoutingModule,
-    SharedModule,
-    BlogsModule,
-    OrderModule,
     GalleryModule.withConfig({
       loadingMode: 'indeterminate',
     }),

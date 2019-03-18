@@ -16,6 +16,13 @@ import { OrderComponent } from './pages/order/order.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TranslateService } from '@ngx-translate/core';
 
+export function HttpLoaderFactory(translate: TranslateService,
+                                  location: Location,
+                                  settings: LocalizeRouterSettings,
+                                  http: HttpClient) {
+  return new LocalizeRouterHttpLoader(translate, location, settings, http);
+}
+
 const routes: Routes = [
   {
     path: '',
@@ -45,15 +52,15 @@ const routes: Routes = [
   },
   {
     path: 'restaurants/:id',
-    loadChildren: './pages/restaurants/restaurants.module#RestaurantsModule'
+    loadChildren: './pages/restaurants/restaurants.module#RestaurantsModule',
   },
   {
     path: 'gallery',
-    loadChildren: './pages/photo-gallery/photo-gallery.module#PhotoGalleryModule'
+    loadChildren: './pages/photo-gallery/photo-gallery.module#PhotoGalleryModule',
   },
   {
     path: 'blog',
-    loadChildren: './pages/blogs/blogs.module#BlogsModule'
+    loadChildren: './pages/blogs/blogs.module#BlogsModule',
   },
   {
     path: '**',
@@ -63,17 +70,16 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    }),
     LocalizeRouterModule.forRoot(routes, {
       parser: {
         provide: LocalizeParser,
-        useFactory: (translate, location, settings, http) =>
-          new LocalizeRouterHttpLoader(translate, location, settings, http),
+        useFactory: HttpLoaderFactory,
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
       },
       cacheName: 'restaurant-api: lang'
-    }),
-    RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadAllModules
     })
   ],
   exports: [RouterModule, LocalizeRouterModule]

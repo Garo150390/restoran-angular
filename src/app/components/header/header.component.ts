@@ -1,9 +1,11 @@
-import {LocalizeRouterService} from 'localize-router';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { LocalizeRouterService } from 'localize-router';
+import { TranslateService } from '@ngx-translate/core';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { OrderService } from '../../core/services/order.service';
 import { StorageService } from '../../core/services/storage.service';
+import { Router } from '@angular/router';
+import {OverrideLocalizeChamgeLanguage} from '../../core/services/override-localize-chamge-language';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +23,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   constructor(private orderService: OrderService,
               private translate: TranslateService,
-              private localize: LocalizeRouterService) {
+              private localize: LocalizeRouterService,
+              private router: Router) {
 
     if (StorageService.getData('orders')) {
       this.count = JSON.parse(StorageService.getData('orders')).length;
@@ -38,15 +41,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       .subscribe((data) => {
         this.count = data;
       });
+    LocalizeRouterService.prototype.changeLanguage = OverrideLocalizeChamgeLanguage;
 
     /*this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       console.log(event.lang);
-    });*/
-
-    /*this.router.events.subscribe((data) => {
+    });
+    this.router.events.subscribe((data) => {
         console.log(data);
     });*/
-    console.log(this.localize.settings.cacheName);
+    // console.log(this.localize);
   }
 
   ngAfterViewInit(): void {
