@@ -1,5 +1,5 @@
 <div class="single-service m-2 no-gutters">
-  <div routerLink="/restaurants/{{restaurant.id}}" class="thumb">
+  <div [routerLink]="['/restaurants/', restaurant.id] | localize" class="thumb">
     <img [src]="restaurant.avatar" alt="restaurant image">
     <div class="d-flex flex-column justify-content-center align-items-center">
       <a class="text-center"><h4>{{restaurant.name | uppercase}}</h4></a>

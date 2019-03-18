@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiEndPoint: 'http://restaurant.loc/api',
-  imagePath: 'http://restaurant.loc/',
+  imagePath: 'http://restaurant.loc',
   storageKey: 'restaurant-api: ',
   jsonDB: 'assets/json/'
 };

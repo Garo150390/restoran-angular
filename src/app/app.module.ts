@@ -5,9 +5,8 @@ import { GallerizeModule } from '@ngx-gallery/gallerize';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
-import { LocalizeRouterHttpLoader } from 'localize-router-http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -26,7 +25,6 @@ import { OrderModule } from './pages/order/order.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { LocalizeParser, LocalizeRouterModule, LocalizeRouterSettings } from 'localize-router';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -45,13 +43,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
     CoreModule,
-    SharedModule,
-    BlogsModule,
-    OrderModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -59,6 +53,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    AppRoutingModule,
+    SharedModule,
+    BlogsModule,
+    OrderModule,
     GalleryModule.withConfig({
       loadingMode: 'indeterminate',
     }),

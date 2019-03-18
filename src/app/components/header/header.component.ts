@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.count = JSON.parse(StorageService.getData('orders')).length;
     }
     this.lang = StorageService.getData('lang') ? StorageService.getData('lang') : 'en';
+    translate.addLangs(['en', 'ru', 'am']);
     translate.setDefaultLang('en');
     translate.use(this.lang);
   }
@@ -38,13 +39,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
         this.count = data;
       });
 
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    /*this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       console.log(event.lang);
-    });
+    });*/
 
     /*this.router.events.subscribe((data) => {
         console.log(data);
     });*/
+    console.log(this.localize.settings.cacheName);
   }
 
   ngAfterViewInit(): void {

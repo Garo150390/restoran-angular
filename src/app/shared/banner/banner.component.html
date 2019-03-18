@@ -8,9 +8,9 @@
             {{name | uppercase}}
           </h1>
           <p class="text-white link-nav">
-            <a routerLink="/home"> {{ 'header.home' | translate }} </a>
+            <a [routerLink]="'/home' | localize"> {{ 'header.home' | translate }} </a>
             <span class="lnr lnr-arrow-right"></span>
-            <a routerLink="/{{name}}">
+            <a [routerLink]="['/', name | lowercase ] | localize">
               {{name}}
             </a>
           </p>

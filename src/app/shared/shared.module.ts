@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { BannerComponent } from './banner/banner.component';
+import { LocalizeRouterModule } from 'localize-router';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { BannerComponent } from './banner/banner.component';
   imports: [
     CommonModule,
     RouterModule,
-    TranslateModule
+    TranslateModule,
+    LocalizeRouterModule
   ],
   exports: [BannerComponent, TranslateModule]
 })

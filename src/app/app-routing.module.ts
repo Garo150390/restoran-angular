@@ -19,12 +19,12 @@ import { TranslateService } from '@ngx-translate/core';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'order',
@@ -40,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurants',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -69,11 +69,12 @@ const routes: Routes = [
         useFactory: (translate, location, settings, http) =>
           new LocalizeRouterHttpLoader(translate, location, settings, http),
         deps: [TranslateService, Location, LocalizeRouterSettings, HttpClient]
-      }
+      },
+      cacheName: 'restaurant-api: lang'
     }),
     RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules
-  })
+      preloadingStrategy: PreloadAllModules
+    })
   ],
   exports: [RouterModule, LocalizeRouterModule]
 })
