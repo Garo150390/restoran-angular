@@ -2,7 +2,7 @@
   <div [routerLink]="['/restaurants/', restaurant.id] | localize" class="thumb">
     <img [src]="restaurant.avatar" alt="restaurant image">
     <div class="d-flex flex-column justify-content-center align-items-center">
-      <a class="text-center"><h4>{{restaurant.name | uppercase}}</h4></a>
+      <h4 class="text-center"><a>{{restaurant.name | uppercase}}</a></h4>
       <p class="text-center px-5">{{restaurant.description}}</p>
     </div>
   </div>

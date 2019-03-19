@@ -8,8 +8,9 @@
     <button class="btn btn-outline-primary m-2 py-0 px-2 mr-5"
             (click)="addCount()">+
     </button>
-    <button mat-raised-button color="warn"
-    (click)="addToOrder()">Add to card
+    <button mat-raised-button color="warn" [disabled]="orderIndex"
+    (click)="addToOrder()">{{ +orderIndex >= 0 ? ('products.addedToCard' | translate)
+                                                : ('products.addToCard' | translate)}}
     </button>
   </div>
 </form>

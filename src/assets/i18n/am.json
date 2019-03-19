@@ -30,7 +30,9 @@
   },
   "products": {
     "view_btn": "Դիտել ավելին",
-    "valuate": "Դրամ"
+    "valuate": "Դրամ",
+    "addToCard": "Ավելացնել արկղի մեջ",
+    "addedToCard": "Ավելացված է"
   },
   "order" : {
     "not_order": "Պատվերներ չկան",

@@ -30,7 +30,9 @@
   },
   "products": {
     "view_btn": "Посмотреть больше",
-    "valuate": "Драм"
+    "valuate": "Драм",
+    "addToCard": "Добавить в корзину",
+    "addedToCard": "Продукт добавлен"
   },
   "order" : {
     "not_order": "Список заказов пуст",

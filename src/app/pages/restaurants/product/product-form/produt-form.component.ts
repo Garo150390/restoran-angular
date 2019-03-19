@@ -13,8 +13,8 @@ export class ProdutFormComponent implements OnInit, OnDestroy {
   @Input()
   private product: ProductsModel;
   public count = 1;
+  public orderIndex: number;
   private orders: Array<OrderProductsModel> = OrderService.orders;
-  private orderIndex: number;
 
   constructor(private orderService: OrderService) { }
 

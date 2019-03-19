@@ -30,7 +30,9 @@
   },
   "products": {
     "view_btn": "View more",
-    "valuate": "AM"
+    "valuate": "AM",
+    "addToCard": "Add to card",
+    "addedToCard": "Product added"
   },
   "order" : {
     "not_order": "Order list is empty",
